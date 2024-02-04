@@ -70,13 +70,13 @@ async function handleSubmit() {
   buttonDisabled.value = true
   setTimeout(() => {
     buttonDisabled.value = false
-  }, 10000)
+  }, 3000)
   try {
     const resp = await api.imageVariation<CreateImageResult>(originalImage.value, selectedImageSize.value, generateImageNumber.value)
     const uuid = resp.data.uuid
     drawStore.setLoadingUuid(uuid)
 
-    const originalUrl = `/ai-image/${originalImage.value}`
+    const originalUrl = `/${originalImage.value}`
     const curDate = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     const aiImage = {
       id: 0,
@@ -89,6 +89,7 @@ async function handleSubmit() {
     }
     drawStore.setLoadingUuid(uuid)
     drawStore.pushOne(aiImage)
+    console.log(aiImage)
     emit('scrollToBottom')
     setTimeout(() => {
       checkProcess(uuid)

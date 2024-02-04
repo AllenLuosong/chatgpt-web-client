@@ -114,7 +114,7 @@ async function handleSubmit(prompt: string) {
 
     emit('scrollToBottom')
     setTimeout(() => {
-      checkProcess(uuid)
+      // checkProcess(uuid)
     }, 5000)
   }
   catch (error) {
@@ -222,7 +222,7 @@ async function handleSubmit(prompt: string) {
               <QuestionCircle16Regular />
             </NIcon>
           </template>
-          <span> 小于4MB的正方形图片。</span>
+          <span> 请确保上传小于4MB的矩形PNG图片。</span>
         </NTooltip>
       </NCol>
       <NCol :span="12">
@@ -244,7 +244,7 @@ async function handleSubmit(prompt: string) {
               <QuestionCircle16Regular />
             </NIcon>
           </template>
-          <span> 小于4MB的PNG图片，跟原图尺寸相同。<br>全透明区域(例如alpha为零的地方)表示应该在那里编辑图像。 </span>
+          <span> 请确保上传小于4MB的PNG图片，且跟原图尺寸相同。<br>全透明区域(例如alpha为零的地方)表示应该在那里编辑图像。 </span>
         </NTooltip>
       </NCol>
       <NCol :span="12">

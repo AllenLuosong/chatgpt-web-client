@@ -137,6 +137,38 @@ return post<T>({
 })
 }
 
+
+export function fetchUserUsage<T = any>(): any {
+  return get<T>({
+    url: `/dashboard/list`,
+  })
+}
+
+export function fetchUserConfig<T = any>(): any {
+  return get<T>({
+    url: `/config/list`,
+  })
+}
+
+export interface configModel {
+  secretKey: string     // apiKey
+  proxyAdress: string   // 接口地址
+  chatModel: string     // 会话模型
+  drawvalue: string     // 绘画模型
+  baseUserId: string    // 用户ID
+}
+/**
+* @description: 用户配置更新
+* @param {configModel} data
+* @return {*}
+*/
+export function configEdit<T>(data: configModel): any {
+return post<T>({
+  url: '/config/edit',
+  data,
+})
+}
+
 export default {
   fileDel,
   fetchAiImage,
@@ -146,4 +178,7 @@ export default {
   imageVariation,
   imageDel,
   modifyPassword,
+  fetchUserUsage,
+  configEdit,
+  fetchUserConfig,
 }

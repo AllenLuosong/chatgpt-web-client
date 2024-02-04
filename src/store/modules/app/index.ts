@@ -5,7 +5,7 @@
  * @Description: 移动端配置
  */
 import { defineStore } from 'pinia'
-import type { AppState, Language, Theme } from './helper'
+import type { AppState, Language, Theme, ChatModel, DrawValue } from './helper'
 import { getLocalSetting, setLocalSetting } from './helper'
 import { store } from '@/store'
 
@@ -26,6 +26,20 @@ export const useAppStore = defineStore('app-store', {
     setLanguage(language: Language) {
       if (this.language !== language) {
         this.language = language
+        this.recordState()
+      }
+    },
+
+    setChatModel(chatModel: ChatModel) {
+      if (this.chatModel !== chatModel) {
+        this.chatModel = chatModel
+        this.recordState()
+      }
+    },
+
+    setDrawValue(drawvalue: DrawValue) {
+      if (this.drawvalue !== drawvalue) {
+        this.drawvalue = drawvalue
         this.recordState()
       }
     },

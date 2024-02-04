@@ -1,3 +1,9 @@
+<!--
+ * @Author: allenluo
+ * @LastEditTime: 2023-10-17 21:32:06
+ * @FilePath: \chagpt-shuowen\src\components\Setting\ModifyPassword.vue
+ * @Description: 密码修改框
+-->
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { NButton, NInput, NTag, useMessage } from 'naive-ui'

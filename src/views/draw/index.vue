@@ -35,8 +35,8 @@ const drawStore = useDrawStore()
 const { aiImages } = storeToRefs<any>(drawStore)
 const tabObjs = ref<TabObj[]>([
   { name: 'tab_generate_image', defaultTab: '文生图', tab: '文生图 ↓' },
-  { name: 'tab_edit_image', defaultTab: '修图', tab: '修图' },
-  { name: 'tab_variation_image', defaultTab: '图生图', tab: '图生图' },
+  // { name: 'tab_edit_image', defaultTab: '修图', tab: '修图' },
+  // { name: 'tab_variation_image', defaultTab: '图生图', tab: '图生图' },
 ])
 const tabPanelShow = ref<boolean>(true)
 const loading = ref<boolean>(false)
@@ -212,7 +212,7 @@ function handleClick(tabOjb: TabObj) {
               <GenerateImage v-show="tabPanelShow" @scroll-to-bottom="handleScrollToBottom" />
             </transition>
           </NTabPane>
-          <NTabPane
+          <!-- <NTabPane
             :key="tabObjs[1].name" :name="tabObjs[1].name" display-directive="show"
             :tab-props="{ style: 'display:none' }"
           >
@@ -227,7 +227,7 @@ function handleClick(tabOjb: TabObj) {
             <transition name="collapse">
               <VariationImage v-show="tabPanelShow" />
             </transition>
-          </NTabPane>
+          </NTabPane> -->
         </NTabs>
       </div>
     </footer>

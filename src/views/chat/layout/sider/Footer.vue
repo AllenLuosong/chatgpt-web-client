@@ -5,12 +5,12 @@
  * @Description: 侧边栏底部内容
 -->
 <script setup lang='ts'>
-import { UserAvatar } from '@/components/index'
+import { defineAsyncComponent, ref } from 'vue'
+import { HoverButton, SvgIcon, UserAvatar } from '@/components/index'
 
-// 设置点击打开对应窗口
-// const Setting = defineAsyncComponent(() => import('@/components/Setting/index.vue'))
+const Setting = defineAsyncComponent(() => import('@/components/Setting/index.vue'))
 
-// const show = ref(false)
+const show = ref(false)
 </script>
 
 <template>
@@ -19,12 +19,12 @@ import { UserAvatar } from '@/components/index'
       <UserAvatar />
     </div>
 
-    <!-- <HoverButton @click="show = true">
+    <HoverButton @click="show = true">
       <span class="text-xl text-[#4f555e] dark:text-white">
         <SvgIcon icon="ri:settings-4-line" />
       </span>
-    </HoverButton> -->
+    </HoverButton>
 
-    <!-- <Setting v-if="show" v-model:visible="show" /> -->
+    <Setting v-if="show" v-model:visible="show" />
   </footer>
 </template>

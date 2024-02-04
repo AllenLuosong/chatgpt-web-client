@@ -5,12 +5,18 @@
  * @Description: 弹出设置窗口
 -->
 <script setup lang='ts'>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { NModal, NTabPane, NTabs } from 'naive-ui'
 import General from './General.vue'
+import Advanced from './Advanced.vue'
+import Quota from './Quota.vue'
 import About from './About.vue'
 import { SvgIcon } from '@/components/index'
 import ModifyPassword from './ModifyPassword.vue'
+import ChatSetting from './ChatSetting.vue'
+import api from "@/api"
+
+
 
 interface Props {
   visible: boolean
@@ -25,6 +31,9 @@ const props = defineProps<Props>()
 const emit = defineEmits<Emit>()
 
 const active = ref('Config')
+const loading = ref(false)
+const userConfig = ref<User.Config>({})
+const userUsage = ref<User.Usage>({})
 
 const show = computed({
   get() {
@@ -34,6 +43,39 @@ const show = computed({
     emit('update:visible', visible)
   },
 })
+
+async function fetchUsage() {
+  try {
+    loading.value = true
+    const { data } = await api.fetchUserUsage<User.Usage>()
+    userUsage.value = data
+  } finally {
+    loading.value = false
+  }
+}
+
+async function fetchConfig() {
+  try {
+    loading.value = true
+    const { data } = await api.fetchUserConfig<User.Config>()
+    userConfig.value = data
+  } finally {
+    loading.value = false
+  }
+}
+
+watch(
+  active,
+  (val) => {
+    if (val === 'Quota')
+      fetchUsage()
+  },
+)
+
+onMounted(() => {
+  fetchConfig() 
+})
+
 </script>
 
 <template>
@@ -47,19 +89,26 @@ const show = computed({
           </template>
           <General />
         </NTabPane>
-        <!-- <NTabPane name="General" tab="General">
+        <NTabPane name="Quota" tab="Quota">
           <template #tab>
-            <SvgIcon class="text-lg" icon="ri:file-user-line" />
-            <span class="ml-2">{{ $t('setting.general') }}</span>
+            <SvgIcon class="text-lg" icon="eos-icons:quota-outlined" />
+            <span class="ml-2">{{ $t('setting.quota') }}</span>
+          </template>
+          <Quota :user-usage="userUsage" @reloadConfig="fetchUsage" />
+        </NTabPane>
+        <NTabPane name="Advanced" tab="Advanced">
+          <template #tab>
+            <SvgIcon class="text-lg" icon="ri:equalizer-line" />
+            <span class="ml-2">{{ $t('setting.advanced') }}</span>
           </template>
           <div class="min-h-[100px]">
-            <About />
+            <Advanced :user-config="userConfig" @reloadConfig="fetchConfig" />
           </div>
-        </NTabPane> -->
+        </NTabPane>
         <NTabPane name="ModifyPassword" tab="ModifyPassword">
           <template #tab>
             <SvgIcon class="text-lg" icon="carbon:password" />
-            <span class="ml-2">重置密码</span>
+            <span class="ml-2">{{ $t('common.restPassWord') }}</span>
           </template>
           <ModifyPassword />
         </NTabPane>
