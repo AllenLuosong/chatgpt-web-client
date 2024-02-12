@@ -234,7 +234,7 @@ function handlePress(event: KeyboardEvent) {
       <NInput v-model:value="userInfo.email" @keypress="handlePress" />
     </NFormItem>
     <NFormItem path="newPassword" :label="$t('common.newPassword')">
-      <NInput v-model:value="userInfo.newPassword" @keypress="handlePress" />
+      <NInput v-model:value="userInfo.newPassword" type="password" show-password-on="mousedown" @keypress="handlePress" />
     </NFormItem>
     <NFormItem
       path="emailVerficationCode"

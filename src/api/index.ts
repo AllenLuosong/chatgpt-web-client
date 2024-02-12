@@ -144,6 +144,12 @@ export function fetchUserUsage<T = any>(): any {
   })
 }
 
+export function fetchUsertokens<T = any>(): any {
+  return get<T>({
+    url: `/dashboard/userUsage`,
+  })
+}
+
 export function fetchUserConfig<T = any>(): any {
   return get<T>({
     url: `/config/list`,
@@ -179,6 +185,7 @@ export default {
   imageDel,
   modifyPassword,
   fetchUserUsage,
+  fetchUsertokens,
   configEdit,
   fetchUserConfig,
 }

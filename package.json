@@ -20,6 +20,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "bootstrap": "pnpm install && pnpm run common:prepare",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "common:cleanup": "rimraf node_modules && rimraf pnpm-lock.yaml",
     "common:prepare": "husky install"
   },

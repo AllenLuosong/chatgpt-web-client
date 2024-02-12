@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NCard, NCol, NRow, NSpace, NStatistic } from 'naive-ui'
+import { NCard, NCol, NRow, NSpace, NStatistic, NTooltip } from 'naive-ui'
 
 interface Props {
   userUsage: User.Usage
@@ -8,7 +8,6 @@ const props = defineProps<Props>()
 console.log(props)
 
 </script>
-
 <template>
   <NSpace vertical>
     <NCard title="余额">

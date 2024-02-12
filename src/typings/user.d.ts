@@ -40,5 +40,6 @@ declare namespace User {
       currMonthRequestTimes?: number
       currMonthGeneratedImageNumber?: number
       total_used?: number
+      total_tokens?: number
   }
 }
