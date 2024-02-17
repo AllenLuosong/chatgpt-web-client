@@ -57,10 +57,10 @@ function fileDel<T = any>(uuid: string) {
   })
 }
 
-function imageGenerate<T = any>(prompt: string, size: string, number: number) {
+function imageGenerate<T = any>(prompt: string, model: string, size: string, number: number) {
   return post<T>({
     url: '/ai-image/generation',
-    data: { prompt, size, number },
+    data: { prompt, model, size, number },
   })
 }
 

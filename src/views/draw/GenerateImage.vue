@@ -22,10 +22,13 @@ const drawStore = useDrawStore()
 const ms = useMessage()
 const selectedImageSize = ref<string>('')
 const generateImageNumber = ref<number>(0)
+const selectedImageModel = ref<string>('')
 
-function commonSettingChange(imageSize: string, imageNumber: number) {
+function commonSettingChange(imageModel:string, imageSize: string, imageNumber: number) {
+  selectedImageModel.value = imageModel
   selectedImageSize.value = imageSize
   generateImageNumber.value = imageNumber
+  console.log()
 }
 async function handleSubmit(prompt: string) {
   if (prompt.length === 0)
@@ -33,7 +36,7 @@ async function handleSubmit(prompt: string) {
   // eslint-disable-next-line no-console
   console.log(`GenerateImage submit:${prompt}`)
   try {
-    const resp = await api.imageGenerate<CreateImageResult>(prompt, selectedImageSize.value, generateImageNumber.value)
+    const resp = await api.imageGenerate<CreateImageResult>(prompt, selectedImageModel.value, selectedImageSize.value, generateImageNumber.value)
     const uuid = resp.data.uuid
     drawStore.setLoadingUuid(uuid)
     const curDate = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
@@ -57,7 +60,7 @@ async function handleSubmit(prompt: string) {
       // eslint-disable-next-line no-console
       console.log(`checkProcess:${uuid}`)
       checkProcess(uuid)
-    }, 2000)
+    }, 1000)
   }
   catch (error: any) {
     const e = error as { message: string }
