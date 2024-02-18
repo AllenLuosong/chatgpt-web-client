@@ -42,12 +42,18 @@ function http<T = any>(
     if (error.response.status === 503) {
       throw new Error(error.message || 'Error')
     }
+    if (error.response.status === 500) {
+      throw new Error(error.message || 'Error')
+    }
     else if (error.response.status === 400) {
       throw new Error(error.response.data.message || 'Error')
     }
     else if (error.response.status === 401) {
       authStore.removeToken()
       window.location.reload()
+      throw new Error(error.response.data.message || 'Error')
+    }
+    else if (error.response.status === 403) {
       throw new Error(error.response.data.message || 'Error')
     }
     else { throw new Error(error.message || 'Error') }
