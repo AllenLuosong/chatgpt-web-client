@@ -15,7 +15,8 @@ import { SvgIcon } from '@/components/index'
 import ModifyPassword from './ModifyPassword.vue'
 import ChatSetting from './ChatSetting.vue'
 import api from "@/api"
-
+import { useAuthStore } from '@/store'
+const authStore = useAuthStore()
 
 
 interface Props {
@@ -72,9 +73,9 @@ watch(
   },
 )
 
-onMounted(() => {
-  fetchConfig() 
-})
+const needPermission = computed(() => !authStore.token)
+if (!needPermission.value)
+  fetchConfig()
 
 </script>
 
