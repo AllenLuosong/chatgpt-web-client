@@ -106,13 +106,13 @@ if (!needPermission.value)
             <Advanced :user-config="userConfig" @reloadConfig="fetchConfig" />
           </div>
         </NTabPane>
-        <NTabPane name="ModifyPassword" tab="ModifyPassword">
+        <!-- <NTabPane name="ModifyPassword" tab="ModifyPassword">
           <template #tab>
             <SvgIcon class="text-lg" icon="carbon:password" />
             <span class="ml-2">{{ $t('common.restPassWord') }}</span>
           </template>
           <ModifyPassword />
-        </NTabPane>
+        </NTabPane> -->
       </NTabs>
     </div>
   </NModal>

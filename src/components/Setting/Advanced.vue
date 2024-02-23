@@ -1,77 +1,74 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { ref } from 'vue'
-import { NButton, NInput, useMessage, NSelect } from 'naive-ui'
-import { useSettingStore } from '@/store'
-import { t } from '@/locales'
-import api from '@/api'
-import { useAppStore, useAuthStore, useUserStore } from '@/store'
-import { getUserInfo } from '@/api/login'
-const loading = ref(false)
+import { computed } from "vue";
+import { ref } from "vue";
+import { NButton, NInput, useMessage, NSelect, NTooltip } from "naive-ui";
+import { useSettingStore } from "@/store";
+import { SvgIcon } from "@/components/index";
+import { t } from "@/locales";
+import api from "@/api";
+import { useAppStore, useAuthStore, useUserStore } from "@/store";
+import { getUserInfo } from "@/api/login";
+const loading = ref(false);
 
-const appStore = useAppStore()
+const appStore = useAppStore();
 
 interface Props {
-  userConfig: User.Config
+  userConfig: User.Config;
 }
 interface Emit {
-  (e: 'reloadConfig'): void
+  (e: "reloadConfig"): void;
 }
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
-const settingStore = useSettingStore()
-const ms = useMessage()
-const secretKey = ref(props.userConfig.secretKey ?? '')
-const proxyAdress = ref(props.userConfig.proxyAdress ?? '')
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
+const settingStore = useSettingStore();
+const ms = useMessage();
+const secretKey = ref(props.userConfig.secretKey ?? "");
+const proxyAdress = ref(props.userConfig.proxyAdress ?? "");
 
 function reloadConfig() {
-  emit('reloadConfig')
+  emit("reloadConfig");
 }
 const chatModel = computed({
-  get() { 
-    return appStore.chatModel
+  get() {
+    return appStore.chatModel;
   },
   set(value: ChatModel) {
-    appStore.setChatModel(value)
+    appStore.setChatModel(value);
   },
-})
+});
 const drawvalue = computed({
   get() {
-    return appStore.drawvalue
+    return appStore.drawvalue;
   },
   set(value: DrawValue) {
-    appStore.setDrawValue(value)
+    appStore.setDrawValue(value);
   },
-})
-
-
+});
 
 async function handleSave() {
-  const data = await getUserInfo()
+  const data = await getUserInfo();
   try {
-    loading.value = true
-    const result = await api.configEdit({ 
-      secretKey: secretKey.value, 
-      proxyAdress: proxyAdress.value, 
-      chatModel: appStore.chatModel, 
-      drawvalue:appStore.drawvalue,  
-      baseUserId: data.data.baseUserId
-      })
-    ms.success("更新成功")
-    reloadConfig()
+    loading.value = true;
+    const result = await api.configEdit({
+      secretKey: secretKey.value,
+      proxyAdress: proxyAdress.value,
+      chatModel: appStore.chatModel,
+      drawvalue: appStore.drawvalue,
+      baseUserId: data.data.baseUserId,
+    });
+    ms.success("更新成功");
+    reloadConfig();
   } catch (error: any) {
-    ms.error(error.message ?? 'error')
+    ms.error(error.message ?? "error");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-
 }
 
-
 function handleReset() {
-  settingStore.resetSetting()
-  ms.success(t('common.success'))
-  window.location.reload()
+  settingStore.resetSetting();
+  ms.success(t("common.success"));
+  window.location.reload();
 }
 
 const selectOptions: {
@@ -80,9 +77,13 @@ const selectOptions: {
   value: SelectedOption;
 }[] = [
   { label: "gpt-3.5-turbo", key: "gpt-3.5-turbo", value: "gpt-3.5-turbo" },
-  { label: "gpt-4-turbo-preview", key: "gpt-4-turbo-preview", value: "gpt-4-turbo-preview", },
+  {
+    label: "gpt-4-turbo-preview",
+    key: "gpt-4-turbo-preview",
+    value: "gpt-4-turbo-preview",
+  },
   { label: "gpt-4", key: "gpt-4", value: "gpt-4" },
-]
+];
 
 const drawOptions: {
   label: string;
@@ -90,9 +91,8 @@ const drawOptions: {
   value: DrawOption;
 }[] = [
   { label: "dall-e-3", key: "dall-e-3", value: "dall-e-3" },
-  { label: "dall-e-2", key: "dall-e-2", value: "dall-e-2", },
-]
-
+  { label: "dall-e-2", key: "dall-e-2", value: "dall-e-2" },
+];
 </script>
 
 <template>
@@ -101,28 +101,45 @@ const drawOptions: {
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">我的secret key</span>
         <div class="flex-1">
-          <NInput v-model:value="secretKey" placeholder="如不指定则使用默认配置" type="textarea" :autosize="{ minRows: 1, maxRows: 4 }" />
+          <NInput
+            v-model:value="secretKey"
+            placeholder="如不指定则使用默认配置"
+            type="textarea"
+            :autosize="{ minRows: 1, maxRows: 4 }"
+          />
         </div>
       </div>
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">我的自定义地址</span>
         <div class="flex-1">
-          <NInput v-model:value="proxyAdress" placeholder="如不指定,默认调用官方地址https://api.openai.com/v1" type="textarea" :autosize="{ minRows: 1, maxRows: 4 }" />
+          <NInput
+            v-model:value="proxyAdress"
+            placeholder="如不指定,默认调用官方地址https://api.openai.com/v1"
+            type="textarea"
+            :autosize="{ minRows: 1, maxRows: 4 }"
+          />
         </div>
       </div>
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">聊天模型</span>
+        <template>
+          <NTooltip trigger="hover">
+            <template #trigger>
+              <NButton> 鸭子 </NButton>
+            </template>
+            仅在配置了secret key后生效,否则默认为3.5模型
+          </NTooltip>
+      </template>
         <div class="flex-1">
-          <NSelect 
-          :value="chatModel" 
-          :placeholder="'请选择聊天模型'" 
-          :options="selectOptions" 
-          @update-value="value => appStore.setChatModel(value)"
+          <NSelect
+            :value="chatModel"
+            :placeholder="'请选择聊天模型'"
+            :options="selectOptions"
+            @update-value="(value) => appStore.setChatModel(value)"
           />
         </div>
-
       </div>
-      <div class="flex items-center space-x-4">
+      <!-- <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">绘画模型</span>
         <div class="flex-1">
           <NSelect 
@@ -132,14 +149,14 @@ const drawOptions: {
           @update-value="value => appStore.setDrawValue(value)"
           />
         </div>
-      </div>
+      </div> -->
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">&nbsp;</span>
         <NButton size="small" @click="handleReset">
-          {{ $t('common.reset') }}
+          {{ $t("common.reset") }}
         </NButton>
         <NButton size="small" type="primary" @click="handleSave()">
-          {{ $t('common.save') }}
+          {{ $t("common.save") }}
         </NButton>
       </div>
     </div>
