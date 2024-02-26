@@ -1,13 +1,25 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { ref } from "vue";
-import { NButton, NInput, useMessage, NSelect, NTooltip } from "naive-ui";
+import {
+  NButton,
+  NSpace,
+  NInput,
+  useMessage,
+  NSelect,
+  NTooltip,
+  SelectOption,
+  SelectGroupOption,
+} from "naive-ui";
 import { useSettingStore } from "@/store";
 import { SvgIcon } from "@/components/index";
 import { t } from "@/locales";
 import api from "@/api";
 import { useAppStore, useAuthStore, useUserStore } from "@/store";
 import { getUserInfo } from "@/api/login";
+import { Options } from "@vicons/ionicons5";
+
+const ChatDefaultVaule = ref("gpt-3.5-turbo")
 const loading = ref(false);
 
 const appStore = useAppStore();
@@ -19,11 +31,13 @@ interface Emit {
   (e: "reloadConfig"): void;
 }
 const props = defineProps<Props>();
+
 const emit = defineEmits<Emit>();
 const settingStore = useSettingStore();
 const ms = useMessage();
 const secretKey = ref(props.userConfig.secretKey ?? "");
 const proxyAdress = ref(props.userConfig.proxyAdress ?? "");
+const chatModelList = ref(props.userConfig.chatModelList ?? "");
 
 function reloadConfig() {
   emit("reloadConfig");
@@ -52,7 +66,7 @@ async function handleSave() {
     const result = await api.configEdit({
       secretKey: secretKey.value,
       proxyAdress: proxyAdress.value,
-      chatModel: appStore.chatModel,
+      chatModel: chatModel.value,
       drawvalue: appStore.drawvalue,
       baseUserId: data.data.baseUserId,
     });
@@ -85,14 +99,6 @@ const selectOptions: {
   { label: "gpt-4", key: "gpt-4", value: "gpt-4" },
 ];
 
-const drawOptions: {
-  label: string;
-  key: DrawOption;
-  value: DrawOption;
-}[] = [
-  { label: "dall-e-3", key: "dall-e-3", value: "dall-e-3" },
-  { label: "dall-e-2", key: "dall-e-2", value: "dall-e-2" },
-];
 </script>
 
 <template>
@@ -120,16 +126,8 @@ const drawOptions: {
           />
         </div>
       </div>
-      <div class="flex items-center space-x-4">
+      <!-- <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">聊天模型</span>
-        <template>
-          <NTooltip trigger="hover">
-            <template #trigger>
-              <NButton> 鸭子 </NButton>
-            </template>
-            仅在配置了secret key后生效,否则默认为3.5模型
-          </NTooltip>
-      </template>
         <div class="flex-1">
           <NSelect
             :value="chatModel"
@@ -138,18 +136,13 @@ const drawOptions: {
             @update-value="(value) => appStore.setChatModel(value)"
           />
         </div>
-      </div>
-      <!-- <div class="flex items-center space-x-4">
-        <span class="flex-shrink-0 w-[100px]">绘画模型</span>
-        <div class="flex-1">
-          <NSelect 
-          :value="drawvalue" 
-          :placeholder="'请选择绘画模型'" 
-          :options="drawOptions"
-          @update-value="value => appStore.setDrawValue(value)"
-          />
-        </div>
       </div> -->
+      <div class="flex items-center space-x-4">
+        <span class="flex-shrink-0 w-[100px]">聊天模型</span>
+        <div class="flex-1">
+        <NSelect :vaule="chatModel" :placeholder="'默认选择3.5模型'" :options="chatModelList" />
+        </div>
+      </div>
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">&nbsp;</span>
         <NButton size="small" @click="handleReset">

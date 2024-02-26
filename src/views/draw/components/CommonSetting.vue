@@ -14,6 +14,7 @@ import {
   NSlider,
   NSpace,
 } from "naive-ui";
+
 const emit = defineEmits<Emit>();
 const imageModels = ["dall-e-2", "dall-e-3"];
 const imageSizes = [
@@ -90,6 +91,8 @@ onMounted(() => {
     generateImageQuality.value
   );
 });
+
+
 </script>
 
 <template>
