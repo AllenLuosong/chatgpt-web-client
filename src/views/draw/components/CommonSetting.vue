@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { AnimalCat24Regular } from "@vicons/fluent";
 import {
   NCol,
@@ -14,6 +14,37 @@ import {
   NSlider,
   NSpace,
 } from "naive-ui";
+import { useAuthStore } from '@/store'
+import api from "@/api"
+
+const authStore = useAuthStore()
+const loading = ref(false)
+
+// interface Props {
+//   userConfig: User.Config;
+// }
+// const props = defineProps<Props>()
+// const drawvalue = ref(props.userConfig.drawvalue ?? "")
+// console.log(chatModel)
+// const userConfig = ref<User.Config>({})
+const userConfig = ref<User.Config>({})
+
+async function fetchConfig() {
+  try {
+    loading.value = true
+    const { data } = await api.fetchUserConfig<User.Config>()
+    userConfig.value = data
+  } finally {
+    loading.value = false
+  }
+}
+
+// const needPermission = computed(() => !authStore.token)
+// if (!needPermission.value)
+//   fetchConfig()
+//   console.log(userConfig)
+
+
 
 const emit = defineEmits<Emit>();
 const imageModels = ["dall-e-2", "dall-e-3"];

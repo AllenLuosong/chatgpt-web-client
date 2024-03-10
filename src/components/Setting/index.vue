@@ -18,7 +18,6 @@ import api from "@/api"
 import { useAuthStore } from '@/store'
 const authStore = useAuthStore()
 
-
 interface Props {
   visible: boolean
 }
@@ -69,9 +68,10 @@ async function fetchConfig() {
 watch(
   active,
   (val) => {
-    if (val === 'Quota')
+    if (val === 'Quota'){
       fetchUsage()
-  },
+    }
+  }
 )
 
 const needPermission = computed(() => !authStore.token)

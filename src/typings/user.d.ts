@@ -9,7 +9,7 @@ declare namespace User {
         secretKey?: string
         proxyAdress?: strting
         chatModel?: string
-        chatModelList?: string
+        chatModelList?: Array
         drawvalue?: string
     }
     interface Usage{
@@ -29,5 +29,9 @@ declare namespace User {
       currMonthGeneratedImageNumber?: number
       total_used?: number
       total_tokens?: number
+      mothly_user_usage?: number
+      today_user_usage?: number
+      today_user_image_usage?: number
+      mothly_user_image_usage?: number
   }
 }

@@ -76,7 +76,7 @@ export default {
     logout: '登出',
     operate: '操作',
     general: '总览',
-    advanced: '高级配置',
+    advanced: '对话配置',
     config: '基础配置',
     quota: '额度',
     avatarLink: '头像链接',

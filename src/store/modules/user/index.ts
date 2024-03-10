@@ -7,8 +7,8 @@
 import { defineStore } from 'pinia'
 import type { UserInfo, UserState } from './helper'
 import { defaultSetting, getLocalState, setLocalState } from './helper'
-
 import { getUserInfo } from '@/api/login'
+
 
 export const useUserStore = defineStore('user-store', {
   state: (): UserState => getLocalState(),

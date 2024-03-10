@@ -38,26 +38,11 @@ const ms = useMessage();
 const secretKey = ref(props.userConfig.secretKey ?? "");
 const proxyAdress = ref(props.userConfig.proxyAdress ?? "");
 const chatModelList = ref(props.userConfig.chatModelList ?? "");
+const chatModel = ref(props.userConfig.chatModel ?? "");
 
 function reloadConfig() {
   emit("reloadConfig");
 }
-const chatModel = computed({
-  get() {
-    return appStore.chatModel;
-  },
-  set(value: ChatModel) {
-    appStore.setChatModel(value);
-  },
-});
-const drawvalue = computed({
-  get() {
-    return appStore.drawvalue;
-  },
-  set(value: DrawValue) {
-    appStore.setDrawValue(value);
-  },
-});
 
 async function handleSave() {
   const data = await getUserInfo();
@@ -72,6 +57,7 @@ async function handleSave() {
     });
     ms.success("更新成功");
     reloadConfig();
+    window.location.reload()
   } catch (error: any) {
     ms.error(error.message ?? "error");
   } finally {
@@ -85,19 +71,6 @@ function handleReset() {
   window.location.reload();
 }
 
-const selectOptions: {
-  label: string;
-  key: SelectedOption;
-  value: SelectedOption;
-}[] = [
-  { label: "gpt-3.5-turbo", key: "gpt-3.5-turbo", value: "gpt-3.5-turbo" },
-  {
-    label: "gpt-4-turbo-preview",
-    key: "gpt-4-turbo-preview",
-    value: "gpt-4-turbo-preview",
-  },
-  { label: "gpt-4", key: "gpt-4", value: "gpt-4" },
-];
 
 </script>
 
@@ -126,21 +99,10 @@ const selectOptions: {
           />
         </div>
       </div>
-      <!-- <div class="flex items-center space-x-4">
-        <span class="flex-shrink-0 w-[100px]">聊天模型</span>
-        <div class="flex-1">
-          <NSelect
-            :value="chatModel"
-            :placeholder="'请选择聊天模型'"
-            :options="selectOptions"
-            @update-value="(value) => appStore.setChatModel(value)"
-          />
-        </div>
-      </div> -->
       <div class="flex items-center space-x-4">
         <span class="flex-shrink-0 w-[100px]">聊天模型</span>
         <div class="flex-1">
-        <NSelect :vaule="chatModel" :placeholder="'默认选择3.5模型'" :options="chatModelList" />
+        <NSelect v-model:value="chatModel" :placeholder="'默认选择3.5模型'" :options="chatModelList" />
         </div>
       </div>
       <div class="flex items-center space-x-4">
