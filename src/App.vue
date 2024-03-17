@@ -10,8 +10,8 @@ import type { MenuOption } from 'naive-ui'
 import type { Component } from 'vue'
 import { defineAsyncComponent, h, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { ChatboxEllipsesOutline, ImagesOutline, LibraryOutline, SettingsOutline } from '@vicons/ionicons5'
-import { NaiveProvider, PromptStore } from '@/components/index'
+import { ChatboxEllipsesOutline, ImagesOutline, LibraryOutline, SettingsOutline, GiftSharp } from '@vicons/ionicons5'
+import { NaiveProvider, PromptStore, CalendarSignIn } from '@/components/index'
 import { useTheme } from '@/hooks/useTheme'
 import { useLanguage } from '@/hooks/useLanguage'
 import { t } from '@/locales'
@@ -22,6 +22,7 @@ const { language } = useLanguage()
 const activeKey = ref<string>('menu-chat')
 const showPrompt = ref<boolean>(false)
 const showSetting = ref<boolean>(false)
+const showCalendar = ref<boolean>(false)
 
 const menuOptions: MenuOption[] = [
   {
@@ -77,6 +78,16 @@ function renderIcon(icon: Component) {
             </NTooltip>
             <NTooltip trigger="hover" placement="right" style="margin-left: 1.5rem;">
               <template #trigger>
+                <NButton text style="font-size: 26px;" class="cursor-pointer" @click="showCalendar = true">
+                  <NIcon>
+                    <GiftSharp />
+                  </NIcon>
+                </NButton>
+              </template>
+              {{ t('store.CalendarButton') }}
+            </NTooltip>
+            <NTooltip trigger="hover" placement="right" style="margin-left: 1.5rem;">
+              <template #trigger>
                 <NButton text style="font-size: 26px;" class="cursor-pointer" @click="showSetting = true">
                   <NIcon>
                     <SettingsOutline />
@@ -97,6 +108,7 @@ function renderIcon(icon: Component) {
         </NLayout>
       </NLayout>
 
+      <CalendarSignIn v-model:visible="showCalendar" />
       <PromptStore v-model:visible="showPrompt" />
       <Setting v-model:visible="showSetting" />
     </NaiveProvider>

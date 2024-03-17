@@ -13,21 +13,21 @@ const props = defineProps<Props>()
       <NRow>
         <NCol :span="5">
           <NStatistic
-            label="本月消费金额(元)"
-            :value="props.userUsage?.total_used ?? '-'"
+            label="剩余tokens数"
+            :value="props.userUsage?.left_tokens ?? '-'"
           >
           </NStatistic>
         </NCol>
         <NCol :span="5">
           <NStatistic
-            label="剩余余额(元)"
-            :value="props.userUsage?.total_available ?? '-'"
+            label="剩余绘画数"
+            :value="props.userUsage?.left_dalle ?? '-'"
           >
           </NStatistic>
         </NCol>
       </NRow>
     </NCard>
-    <NCard title="聊天与图片">
+    <NCard title="对话与绘画">
       <NRow>
         <NCol :span="5">
           <NStatistic
@@ -45,14 +45,14 @@ const props = defineProps<Props>()
         </NCol>
         <NCol :span="5">
           <NStatistic
-            label="今日生成图片"
+            label="今日生成绘画"
             :value="props.userUsage?.today_user_image_usage ?? '-'"
           >
           </NStatistic>
         </NCol>
         <NCol :span="5">
           <NStatistic
-            label="当月生成图片"
+            label="当月生成绘画"
             :value="props.userUsage?.mothly_user_image_usage ?? '-'"
           >
           </NStatistic>

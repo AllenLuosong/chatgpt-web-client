@@ -5,20 +5,24 @@
  * @Description: 移动端的头部组件
 -->
 <script lang="ts" setup>
-import { computed, nextTick } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { HoverButton, SvgIcon } from '@/components/index'
 import { useAppStore, useChatStore } from '@/store'
 
+
+
 interface Props {
-  usingContext: boolean
+  usingContext: boolean,
 }
+defineProps<Props>();
+
 
 interface Emit {
   (ev: 'export'): void
   (ev: 'toggleUsingContext'): void
 }
 
-defineProps<Props>()
+// defineProps<Props>()
 
 const emit = defineEmits<Emit>()
 
@@ -68,11 +72,11 @@ function toggleUsingContext() {
         {{ currentChatHistory?.title ?? '' }}
       </h1>
       <div class="flex items-center space-x-2">
-        <HoverButton @click="toggleUsingContext">
+        <!-- <HoverButton @click="toggleUsingContext">
           <span class="text-xl" :class="{ 'text-[#4b9e5f]': usingContext, 'text-[#a8071a]': !usingContext }">
             <SvgIcon icon="ri:chat-history-line" />
           </span>
-        </HoverButton>
+        </HoverButton> -->
         <HoverButton @click="handleExport">
           <span class="text-xl text-[#4f555e] dark:text-white">
             <SvgIcon icon="ri:download-2-line" />

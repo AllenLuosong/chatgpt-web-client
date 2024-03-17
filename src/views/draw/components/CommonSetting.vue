@@ -20,13 +20,9 @@ import api from "@/api"
 const authStore = useAuthStore()
 const loading = ref(false)
 
-// interface Props {
-//   userConfig: User.Config;
-// }
-// const props = defineProps<Props>()
-// const drawvalue = ref(props.userConfig.drawvalue ?? "")
-// console.log(chatModel)
-// const userConfig = ref<User.Config>({})
+// const respData = await api.fetchUserConfig<User.Config>()
+// console.log(respData)
+
 const userConfig = ref<User.Config>({})
 
 async function fetchConfig() {
@@ -127,9 +123,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <NRow class="pt-4">
+  <NRow class="pt-1">
     <NCol :span="2" class="min-w-fit"> 图片模型： </NCol>
-    <NCol :span="6">
+    <NCol :span="24">
       <NRadioGroup
         :value="selectedImageModel"
         name="radiogroup"
@@ -154,7 +150,7 @@ onMounted(() => {
   <NCollapseTransition :show="show">
     <NRow>
       <NCol :span="2" class="min-w-fit"> 图片质量： </NCol>
-      <NCol :span="8">
+      <NCol :span="12">
         <NRadioGroup
           :value="generateImageQuality"
           name="radiogroup"
@@ -211,7 +207,7 @@ onMounted(() => {
           :value="generateImageNumber"
           :step="1"
           :min="1"
-          :max="10"
+          :max="4"
           :on-update:value="imageNumberChange"
           :default-value="1"
           :disabled="selectedImageModel === 'dall-e-3'"

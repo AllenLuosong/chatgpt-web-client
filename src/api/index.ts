@@ -144,6 +144,12 @@ export function fetchUserUsage<T = any>(): any {
   })
 }
 
+export function usersignindata<T = any>(): any {
+  return get<T>({
+    url: `/user/checkInData`,
+  })
+}
+
 export function fetchUsertokens<T = any>(): any {
   return get<T>({
     url: `/dashboard/userUsage`,
@@ -175,6 +181,21 @@ return post<T>({
 })
 }
 
+export interface signinModel {
+  date: string     // 签到日期
+}
+/**
+* @description: 用户配置更新
+* @param {signinModel} data
+* @return {*}
+*/
+export function signin<T>(data: signinModel): any {
+return post<T>({
+  url: '/user/checkIn',
+  data,
+})
+}
+
 export default {
   fileDel,
   fetchAiImage,
@@ -188,4 +209,6 @@ export default {
   fetchUsertokens,
   configEdit,
   fetchUserConfig,
+  usersignindata,
+  signin,
 }

@@ -7,6 +7,7 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { debounce } from '@/utils/functions/debounce'
 import { t } from '@/locales'
 import api from '@/api'
+import { Config } from 'markdown-it-link-attributes'
 
 interface Emit {
   (e: 'submit', prompt: string): void
@@ -57,6 +58,9 @@ function handleSubmit() {
   prompt.value = ''
 }
 
+// const respData = await api.fetchUserConfig<User.Config>()
+// console.log(respData)
+
 const handleSearchRemote = debounce(searchRemote, 300)
 async function searchRemote() {
   const resp = await api.promptAutocomplete<Chat.Prompt[]>(prompt.value.replace('/', ''))
@@ -94,21 +98,19 @@ watch(
 
 <template>
   <NRow class="pb-3">
-    <NCol :span="24">
+    <NCol :span="20">
       <div class="flex items-center justify-between space-x-2">
         <NAutoComplete v-model:value="prompt" :options="promptTemplate" :get-show="getShow" :on-select="handleSelect">
           <template #default="{ handleInput, handleBlur, handleFocus, value: slotValue }">
             <NInput
               :value="slotValue" type="textarea" :placeholder="placeholder"
-              :autosize="{ minRows: 3, maxRows: isMobile ? 4 : 8 }" @input="handleInput" @focus="handleFocus"
+              :autosize="{ minRows: 1, maxRows: isMobile ? 4 : 8 }" @input="handleInput" @focus="handleFocus"
               @blur="handleBlur" @keypress="handleEnter"
             />
           </template>
         </NAutoComplete>
       </div>
     </NCol>
-  </NRow>
-  <NRow>
     <NCol>
       <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
         提交

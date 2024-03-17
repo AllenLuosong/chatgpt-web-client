@@ -47,7 +47,7 @@ export default {
     defaultName: 'Chat',
     newChatButton: '新建聊天',
     placeholder: '来说点什么吧...(Shift + Enter = 换行，"/" 触发提示词)',
-    placeholderMobile: '来说点什么...',
+    placeholderMobile: '来说点什么吧...("/"有惊喜)',
     copy: '复制',
     copied: '复制成功',
     copyCode: '复制代码',
@@ -68,8 +68,8 @@ export default {
     showRawText: '显示原文',
   },
   draw: {
-    placeholder: '输入生成图片的提示词，如：一只小猫...（Shift + Enter = 换行）',
-    placeholderMobile: '来说点什么...',
+    placeholder: '输入生成图片的提示词，如：一只小猫...(Shift + Enter = 换行)',
+    placeholderMobile: '来说点什么吧...("/"有惊喜)',
   },
   setting: {
     setting: '设置',
@@ -99,6 +99,7 @@ export default {
   },
   store: {
     siderButton: '提示词商店',
+    CalendarButton: '签到',
     local: '本地',
     online: '在线',
     title: '标题',

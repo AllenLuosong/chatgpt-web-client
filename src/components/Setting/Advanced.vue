@@ -27,6 +27,7 @@ const appStore = useAppStore();
 interface Props {
   userConfig: User.Config;
 }
+
 interface Emit {
   (e: "reloadConfig"): void;
 }
@@ -39,6 +40,7 @@ const secretKey = ref(props.userConfig.secretKey ?? "");
 const proxyAdress = ref(props.userConfig.proxyAdress ?? "");
 const chatModelList = ref(props.userConfig.chatModelList ?? "");
 const chatModel = ref(props.userConfig.chatModel ?? "");
+
 
 function reloadConfig() {
   emit("reloadConfig");
@@ -70,7 +72,6 @@ function handleReset() {
   ms.success(t("common.success"));
   window.location.reload();
 }
-
 
 </script>
 
