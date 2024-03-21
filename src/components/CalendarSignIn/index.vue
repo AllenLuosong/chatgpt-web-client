@@ -26,6 +26,7 @@ const dateLocale = ref(dateZhCN);
 const loading = ref(false)
 const SigninData = ref<User.Signin>({})
 const dateArray = ref([])
+const disabled = ref(true)
 
 interface Props {
   visible: boolean;
@@ -104,7 +105,7 @@ function isDateDisabled(timestamp: number) {
     🎁 点击对应日期签到赠送 2000 对话额度、2绘画额度~ 
     <br />
     🤙体验额度不够用，联系管理员🤙
-    <NConfigProvider :locale="locale" :date-locale="dateLocale" :disabledPagination="true">
+    <NConfigProvider :locale="locale" :date-locale="dateLocale" ::disabled="disabled">
       <NCalendar
         v-model:value="value"
         #="{ year, month, date }"

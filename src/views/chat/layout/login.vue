@@ -31,7 +31,7 @@ const rules: FormRules = {
     trigger: ['blur', 'input'],
     validator(rule, value) {
       // 自定义验证  规则
-      const regMobile = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+      const regMobile = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
       if (!value)
         return new Error('请输入邮箱')
 
