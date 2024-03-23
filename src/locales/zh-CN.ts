@@ -78,7 +78,7 @@ export default {
     general: '总览',
     advanced: '对话配置',
     config: '基础配置',
-    quota: '额度',
+    quota: '额度查询',
     avatarLink: '头像链接',
     name: '名称',
     description: '描述',

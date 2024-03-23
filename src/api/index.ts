@@ -196,6 +196,21 @@ return post<T>({
 })
 }
 
+export interface redeemModel {
+  redeemCode: string     // 兑换码
+}
+/**
+* @description: 用户配置更新
+* @param {redeemModel} data
+* @return {*}
+*/
+export function redeem<T>(data: redeemModel): any {
+return post<T>({
+  url: '/user/redeem',
+  data,
+})
+}
+
 export default {
   fileDel,
   fetchAiImage,
@@ -211,4 +226,5 @@ export default {
   fetchUserConfig,
   usersignindata,
   signin,
+  redeem,
 }

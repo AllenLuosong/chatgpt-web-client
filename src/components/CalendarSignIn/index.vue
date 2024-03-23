@@ -15,18 +15,20 @@ import {
   NConfigProvider,
   zhCN,
   dateZhCN,
+  NAlert 
 } from "naive-ui";
+import VueIntro from "vue-introjs";
+// import 'intro.js/introjs.css';
 import { isToday, addDays } from "date-fns/esm";
 import api from "@/api";
-import { useAuthStore } from '@/store'
+import { useAuthStore } from "@/store";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const locale = ref(zhCN);
 const dateLocale = ref(dateZhCN);
-const loading = ref(false)
-const SigninData = ref<User.Signin>({})
-const dateArray = ref([])
-const disabled = ref(true)
+const loading = ref(false);
+const SigninData = ref<User.Signin>({});
+const dateArray = ref([]);
 
 interface Props {
   visible: boolean;
@@ -49,26 +51,22 @@ const show = computed({
   },
 });
 
-
-
 const message = useMessage();
 const value = ref(addDays(Date.now(), 0).valueOf());
 
-
 async function fetchusersignindata() {
   try {
-    loading.value = true
-    const { data } = await api.usersignindata<User.Signin>()
-    dateArray.value = data.checked_in_date
-    return data
+    loading.value = true;
+    const { data } = await api.usersignindata<User.Signin>();
+    dateArray.value = data.checked_in_date;
+    return data;
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
-const needPermission = computed(() => !authStore.token)
-if (!needPermission.value)
-  fetchusersignindata()
+const needPermission = computed(() => !authStore.token);
+if (!needPermission.value) fetchusersignindata();
 
 async function handleUpdateValue(
   _: number,
@@ -91,6 +89,7 @@ function isDateDisabled(timestamp: number) {
   return true;
 }
 
+
 </script>
 
 <template>
@@ -101,19 +100,26 @@ function isDateDisabled(timestamp: number) {
     style="width: 80%; max-width: 720px"
   >
     <NH1>签到</NH1>
-    <p />
-    🎁 点击对应日期签到赠送 2000 对话额度、2绘画额度~ 
+    <NAlert type="info" :show-icon="false">
+    🎁 点击对应日期签到赠送 2000 对话额度、2绘画额度~
     <br />
     🤙体验额度不够用，联系管理员🤙
-    <NConfigProvider :locale="locale" :date-locale="dateLocale" ::disabled="disabled">
+    </NAlert>
+    <NConfigProvider :locale="locale" :date-locale="dateLocale">
       <NCalendar
         v-model:value="value"
-        #="{ year, month, date }"
         style="height: 360px"
         :is-date-disabled="isDateDisabled"
         @update:value="handleUpdateValue"
       >
-       <span v-if="dateArray.includes(date)">🎁</span>
+        <template #header="{ year, month }">
+          <div>
+            <span>{{ year }}年{{ month }}月</span>
+          </div>
+        </template>
+        <template #default="{ date }">
+          <span v-if="dateArray.includes(date)">🎁</span>
+        </template>
       </NCalendar>
     </NConfigProvider>
   </NModal>

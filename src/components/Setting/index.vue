@@ -10,10 +10,8 @@ import { NModal, NTabPane, NTabs } from 'naive-ui'
 import General from './General.vue'
 import Advanced from './Advanced.vue'
 import Quota from './Quota.vue'
-import About from './About.vue'
+import Redeem from './Redeem.vue'
 import { SvgIcon } from '@/components/index'
-import ModifyPassword from './ModifyPassword.vue'
-import ChatSetting from './ChatSetting.vue'
 import api from "@/api"
 import { useAuthStore } from '@/store'
 const authStore = useAuthStore()
@@ -106,6 +104,13 @@ if (!needPermission.value)
           <div class="min-h-[100px]">
             <Advanced :user-config="userConfig" @reloadConfig="fetchConfig" />
           </div>
+        </NTabPane>
+        <NTabPane name="Redeem" tab="Redeem">
+          <template #tab>
+            <SvgIcon class="text-lg" icon="ri:red-packet-line" />
+            <span class="ml-2">额度兑换</span>
+          </template>
+          <Redeem />
         </NTabPane>
         <!-- <NTabPane name="ModifyPassword" tab="ModifyPassword">
           <template #tab>
