@@ -22,12 +22,14 @@ export function fetchChatAPI<T = any>(
 export function fetchChatAPIProcess<T = any>(
   params: {
     prompt: string
+    isUsingContext: boolean
     options?: { conversationId?: string; parentMessageId?: string }
     signal?: GenericAbortSignal
     onDownloadProgress?: (progressEvent: AxiosProgressEvent) => void },
 ) {
   const data: Record<string, any> = {
     prompt: params.prompt,
+    isUsingContext: params.isUsingContext,
     options: params.options,
   }
 
