@@ -20,6 +20,9 @@ dependencies:
   html2canvas:
     specifier: ^1.4.1
     version: 1.4.1
+  intro.js:
+    specifier: ^7.2.0
+    version: 7.2.0
   katex:
     specifier: ^0.16.4
     version: 0.16.4
@@ -40,7 +43,7 @@ dependencies:
     version: 9.2.2(vue@3.2.47)
   vue-introjs:
     specifier: ^1.3.2
-    version: 1.3.2(intro.js@2.9.3)
+    version: 1.3.2(intro.js@7.2.0)
   vue-router:
     specifier: ^4.1.6
     version: 4.1.6(vue@3.2.47)
@@ -4713,8 +4716,8 @@ packages:
       side-channel: 1.0.4
     dev: true
 
-  /intro.js@2.9.3:
-    resolution: {integrity: sha512-hC+EXWnEuJeA3CveGMat3XHePd2iaXNFJIVfvJh2E9IzBMGLTlhWvPIVHAgKlOpO4lNayCxEqzr4N02VmHFr9Q==}
+  /intro.js@7.2.0:
+    resolution: {integrity: sha512-qbMfaB70rOXVBceIWNYnYTpVTiZsvQh/MIkfdQbpA9di9VBfj1GigUPfcCv3aOfsbrtPcri8vTLTA4FcEDcHSQ==}
     dev: false
 
   /is-alphabetical@1.0.4:
@@ -7225,12 +7228,12 @@ packages:
       vue: 3.2.47
     dev: false
 
-  /vue-introjs@1.3.2(intro.js@2.9.3):
+  /vue-introjs@1.3.2(intro.js@7.2.0):
     resolution: {integrity: sha512-Bj27iGimO6VKr/Ngxs5hr/Fh8ONSHmvTUj2gh1f5CGZC5vfF1Vb5VyetjXiDdMXhLsqeGSIhac6SbVNHwUh9yQ==}
     peerDependencies:
       intro.js: ^2.7.0
     dependencies:
-      intro.js: 2.9.3
+      intro.js: 7.2.0
     dev: false
 
   /vue-router@4.1.6(vue@3.2.47):

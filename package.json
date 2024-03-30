@@ -31,6 +31,7 @@
     "date-fns": "^2.30.0",
     "highlight.js": "^11.7.0",
     "html2canvas": "^1.4.1",
+    "intro.js": "^7.2.0",
     "katex": "^0.16.4",
     "markdown-it": "^13.0.1",
     "naive-ui": "^2.34.3",

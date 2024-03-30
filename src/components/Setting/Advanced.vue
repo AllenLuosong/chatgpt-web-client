@@ -19,7 +19,6 @@ import { useAppStore, useAuthStore, useUserStore } from "@/store";
 import { getUserInfo } from "@/api/login";
 import { Options } from "@vicons/ionicons5";
 
-const ChatDefaultVaule = ref("gpt-3.5-turbo")
 const loading = ref(false);
 
 const appStore = useAppStore();
@@ -39,7 +38,7 @@ const ms = useMessage();
 const secretKey = ref(props.userConfig.secretKey ?? "");
 const proxyAdress = ref(props.userConfig.proxyAdress ?? "");
 const chatModelList = ref(props.userConfig.chatModelList ?? "");
-const chatModel = ref(props.userConfig.chatModel ?? "");
+const chatModel = ref(props.userConfig.chatModel ?? "gpt-3.5-turbo");
 
 
 function reloadConfig() {

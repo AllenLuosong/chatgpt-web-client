@@ -77,6 +77,7 @@ async function handleUpdateValue(
       date: `${year}-${month}-${date}`,
     });
     message.success(`签到成功,福利已到账`);
+    window.location.reload();
   } catch (error: any) {
     message.error(error.message ?? "error");
   }
