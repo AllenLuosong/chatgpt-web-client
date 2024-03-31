@@ -6,10 +6,10 @@
 -->
 <script setup lang='ts'>
 import type { Ref } from 'vue'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { NAutoComplete, NButton, NInput, useDialog, useMessage } from 'naive-ui'
+import { NAutoComplete, NButton, NInput, useDialog, useMessage, NModal } from 'naive-ui'
 import html2canvas from 'html2canvas'
 import { Message } from './components'
 import { useScroll } from './hooks/useScroll'
@@ -22,6 +22,9 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
+
+const Audio = defineAsyncComponent(() => import('@/components/Setting/Audio.vue'))
+const AudioShow = ref<boolean>(false)
 
 let controller = new AbortController()
 
@@ -560,8 +563,14 @@ onUnmounted(() => {
               <SvgIcon icon="ri:chat-history-line" />
             </span>
           </HoverButton>
+          <!-- <HoverButton @click="AudioShow = true">
+            <span class="text-xl text-[#4f555e] dark:text-white">
+              <SvgIcon icon="ant-design:audio-outlined" />
+            </span>
+          </HoverButton>
+          <Audio v-model:visible="AudioShow" /> -->
           <NAutoComplete v-model:value="prompt" :options="searchOptions" :render-label="renderOption">
-            <template #default="{ handleInput, handleBlur, handleFocus }">
+            <template #default="{ handleInput, handleBlur, handleFocus }">          
               <NInput
                 ref="inputRef"
                 v-model:value="prompt"

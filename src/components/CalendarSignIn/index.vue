@@ -15,10 +15,9 @@ import {
   NConfigProvider,
   zhCN,
   dateZhCN,
+  NImage,
   NAlert 
 } from "naive-ui";
-import VueIntro from "vue-introjs";
-// import 'intro.js/introjs.css';
 import { isToday, addDays } from "date-fns/esm";
 import api from "@/api";
 import { useAuthStore } from "@/store";
@@ -104,7 +103,11 @@ function isDateDisabled(timestamp: number) {
     <NAlert type="info" :show-icon="false">
     🎁 点击对应日期签到赠送 2000 对话额度、2绘画额度~
     <br />
-    🤙体验额度不够用，联系管理员🤙
+    🤙体验额度不够用，扫描二维码联系管理员(点击可放大) 👉 
+      <NImage
+    width="15"
+    src="pics/WechatFriend.jpg"
+  />
     </NAlert>
     <NConfigProvider :locale="locale" :date-locale="dateLocale">
       <NCalendar
