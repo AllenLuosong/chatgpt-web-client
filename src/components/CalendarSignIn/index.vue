@@ -106,7 +106,7 @@ function isDateDisabled(timestamp: number) {
     🤙体验额度不够用，扫描二维码联系管理员(点击可放大) 👉 
       <NImage
     width="15"
-    src="pics/WechatFriend.jpg"
+    src="https://img2.imgtp.com/2024/03/31/RaP7CxZO.jpg"
   />
     </NAlert>
     <NConfigProvider :locale="locale" :date-locale="dateLocale">
