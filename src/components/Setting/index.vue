@@ -14,6 +14,7 @@ import Redeem from './Redeem.vue'
 import { SvgIcon } from '@/components/index'
 import api from "@/api"
 import { useAuthStore } from '@/store'
+
 const authStore = useAuthStore()
 
 interface Props {
@@ -57,6 +58,7 @@ async function fetchConfig() {
     loading.value = true
     const { data } = await api.fetchUserConfig<User.Config>()
     userConfig.value = data
+    return userConfig.value
   } finally {
     loading.value = false
   }
@@ -71,6 +73,7 @@ watch(
     }
   }
 )
+
 
 const needPermission = computed(() => !authStore.token)
 if (!needPermission.value)

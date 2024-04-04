@@ -1,6 +1,6 @@
 <!--
- * @Author: mjjh
- * @LastEditTime: 2023-04-09 14:21:25
+ * @Author: Allenluo
+ * @LastEditTime: 2024-04-09 14:21:25
  * @FilePath: \src\views\chat\components\Message\index.vue
  * @Description: 移动端消息组件
 --><script setup lang='ts'>

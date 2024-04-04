@@ -14,6 +14,12 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
+  eventsource-parser:
+    specifier: ^1.1.2
+    version: 1.1.2
+  gpt-tokenizer:
+    specifier: ^2.1.2
+    version: 2.1.2
   highlight.js:
     specifier: ^11.7.0
     version: 11.7.0
@@ -23,12 +29,18 @@ dependencies:
   intro.js:
     specifier: ^7.2.0
     version: 7.2.0
+  js-audio-recorder:
+    specifier: ^1.0.7
+    version: 1.0.7
   katex:
     specifier: ^0.16.4
     version: 0.16.4
   lamejs:
     specifier: ^1.2.1
     version: 1.2.1
+  localforage:
+    specifier: ^1.10.0
+    version: 1.10.0
   markdown-it:
     specifier: ^13.0.1
     version: 13.0.1
@@ -56,6 +68,9 @@ dependencies:
   vue-router:
     specifier: ^4.1.6
     version: 4.1.6(vue@3.2.47)
+  vue-turnstile:
+    specifier: ^1.0.8
+    version: 1.0.8(vue@3.2.47)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -4413,6 +4428,11 @@ packages:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: true
 
+  /eventsource-parser@1.1.2:
+    resolution: {integrity: sha512-v0eOBUbiaFojBu2s2NPBfYUoRR9GjcDNvCXVaqEf5vVfpIAh9f8RCo4vXTP8c63QRKCFwoLpMpTdPwwhEKVgzA==}
+    engines: {node: '>=14.18'}
+    dev: false
+
   /evtd@0.2.4:
     resolution: {integrity: sha512-qaeGN5bx63s/AXgQo8gj6fBkxge+OoLddLniox5qtLAEY5HSnuSlISXVPxnSae1dWblvTh4/HoMIB+mbMsvZzw==}
     dev: false
@@ -4856,6 +4876,12 @@ packages:
       get-intrinsic: 1.2.4
     dev: true
 
+  /gpt-tokenizer@2.1.2:
+    resolution: {integrity: sha512-HSuI5d6uey+c7x/VzQlPfCoGrfLyAc28vxWofKbjR9PJHm0AjQGSWkKw/OJnb+8S1g7nzgRsf0WH3dK+NNWYbg==}
+    dependencies:
+      rfc4648: 1.5.3
+    dev: false
+
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: true
@@ -5063,6 +5089,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /immediate@3.0.6:
+    resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
+    dev: false
 
   /immutable@4.3.5:
     resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
@@ -5488,6 +5518,10 @@ packages:
     dev: true
     optional: true
 
+  /js-audio-recorder@1.0.7:
+    resolution: {integrity: sha512-JiDODCElVHGrFyjGYwYyNi7zCbKk9va9C77w+zCPMmi4C6ix7zsX2h3ddHugmo4dOTOTCym9++b/wVW9nC0IaA==}
+    dev: false
+
   /js-sdsl@4.4.0:
     resolution: {integrity: sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==}
     dev: true
@@ -5634,6 +5668,12 @@ packages:
       type-check: 0.4.0
     dev: true
 
+  /lie@3.1.1:
+    resolution: {integrity: sha512-RiNhHysUjhrDQntfYSfY4MU24coXXdEOgw9WGcKHNeEwffDYbF//u87M1EWaMGzuFoSbqW0C9C6lEEhDOAswfw==}
+    dependencies:
+      immediate: 3.0.6
+    dev: false
+
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
@@ -5705,6 +5745,12 @@ packages:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
     dev: true
+
+  /localforage@1.10.0:
+    resolution: {integrity: sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==}
+    dependencies:
+      lie: 3.1.1
+    dev: false
 
   /locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
@@ -6853,6 +6899,10 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
 
+  /rfc4648@1.5.3:
+    resolution: {integrity: sha512-MjOWxM065+WswwnmNONOT+bD1nXzY9Km6u3kzvnx8F8/HXGZdz3T6e6vZJ8Q/RIMUSp/nxqjH3GwvJDy8ijeQQ==}
+    dev: false
+
   /rfdc@1.3.0:
     resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
     dev: true
@@ -7966,6 +8016,14 @@ packages:
       typescript: 4.9.5
     dev: true
 
+  /vue-turnstile@1.0.8(vue@3.2.47):
+    resolution: {integrity: sha512-YpxW3YOIQxYYSqmVFG0hKzKHNtLpVAFtZVDU9iCBNJ4nkzYwY8bcW7+q4gXMVchmq1r0E5832wnoEDTZiML3Bg==}
+    peerDependencies:
+      vue: ^3.2.45
+    dependencies:
+      vue: 3.2.47
+    dev: false
+
   /vue@3.2.47:
     resolution: {integrity: sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ==}
     dependencies:
@@ -8140,6 +8198,7 @@ packages:
 
   /workbox-google-analytics@6.6.0:
     resolution: {integrity: sha512-p4DJa6OldXWd6M9zRl0H6vB9lkrmqYFkRQ2xEiNdBFp9U0LhsGO7hsBscVEyH9H2/3eZZt8c97NB2FD9U2NJ+Q==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 6.6.0
       workbox-core: 6.6.0

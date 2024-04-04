@@ -14,6 +14,7 @@ export interface UserInfo {
   description: string
   id: string
   email: string
+  chatModel: string
 }
 
 export interface UserState {
@@ -28,6 +29,7 @@ export function defaultSetting(): UserState {
       description: 'Star on <a href="https://github.com/mjjh1717/chatgpt-shuowen" class="text-blue-500" target="_blank" >Github</a>',
       id: '',
       email: '',
+      chatModel: 'gpt-3.5-turbo',
     },
   }
 }

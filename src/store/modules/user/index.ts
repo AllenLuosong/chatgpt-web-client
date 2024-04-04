@@ -21,6 +21,7 @@ export const useUserStore = defineStore('user-store', {
         description: data.description,
         id: data.baseUserId,
         email: data.email,
+        chatModel: data.chatModel
       }
       this.updateUserInfo(newData)
     },

@@ -1,7 +1,7 @@
 <!--
- * @Author: mjjh
- * @LastEditTime: 2023-04-16 19:55:29
- * @FilePath: \chagpt-shuowen\src\views\chat\index.vue
+ * @Author: Allenluo
+ * @LastEditTime: 2024-03-16 19:55:29
+ * @FilePath: \src\views\chat\index.vue
  * @Description: chat页面index.vue
 -->
 <script setup lang='ts'>
@@ -9,7 +9,7 @@ import type { Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { NAutoComplete, NButton, NInput, useDialog, useMessage, NModal } from 'naive-ui'
+import { NAutoComplete, NButton, NInput, useDialog, useMessage, NModal, NDropdown} from 'naive-ui'
 import html2canvas from 'html2canvas'
 import { Message } from './components'
 import { useScroll } from './hooks/useScroll'
@@ -22,9 +22,20 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
+// import aiGptInput from '../mj/aiGptInput.vue'
+
+
+import { useUserStore } from '@/store'
+import { isString } from '@/utils/is'
+
+const userStore = useUserStore()
+
+const userInfo = computed(() => userStore.userInfo)
 
 const Audio = defineAsyncComponent(() => import('@/components/Setting/Audio.vue'))
 const AudioShow = ref<boolean>(false)
+
+const st =ref({inputme:true});
 
 let controller = new AbortController()
 
@@ -109,7 +120,7 @@ async function onConversation() {
     +uuid,
     {
       dateTime: new Date().toLocaleString(),
-      text: '',
+      text: '思考中',
       loading: true,
       inversion: false,
       error: false,
@@ -483,6 +494,11 @@ const footerClass = computed(() => {
   return classes
 })
 
+
+function handleClick() {
+    ms.info('请在设置页面修改模型')
+    }
+
 onMounted(() => {
   scrollToBottom()
   if (inputRef.value && !isMobile.value)
@@ -503,6 +519,9 @@ onUnmounted(() => {
       @export="handleExport"
       @toggle-using-context="toggleUsingContext"
     />
+    <NButton quaternary round type="primary" @click="handleClick">
+    当前模型: {{ userInfo.chatModel }}
+    </NButton>
     <main class="flex-1 overflow-hidden">
       <div id="scrollRef" ref="scrollRef" class="h-full overflow-hidden overflow-y-auto">
         <div
@@ -547,6 +566,11 @@ onUnmounted(() => {
     </main>
     <footer :class="footerClass">
       <div class="w-full max-w-screen-xl m-auto">
+      <!-- ['gpt-4-vision-preview','gpt-3.5-turbo-16k'].indexOf(gptConfigStore.myData.model)>-1 ||-->
+        <!-- <aiGptInput v-if=" st.inputme "
+         v-model:modelValue="prompt" :disabled="buttonDisabled" 
+         :searchOptions="searchOptions"  :renderOption="renderOption"
+          /> -->
         <div class="flex items-center justify-between space-x-2">
           <HoverButton tooltip="删除记录" @click="handleClear">
             <span class="text-xl text-[#4f555e] dark:text-white">
@@ -583,6 +607,7 @@ onUnmounted(() => {
                 @keypress="handleEnter"
               />
             </template>
+
           </NAutoComplete>
           <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
             <template #icon>
