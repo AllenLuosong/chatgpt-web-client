@@ -12,6 +12,7 @@
 项目体验地址:  [网页Dmeo](https://wiki.hichat.shop/)
 体验账号/密码:  demo1@demo.com/demo20240209
 
+# 以下是[midjourney-proxy]项目说明
 # ChatGPT Web Midjourney Proxy
 💡**声明**
 - 此项目只发布于 GitHub，基于 MIT 协议，免费且作为开源学习使用。并且不会有任何形式的卖号、付费服务、讨论群、讨论组等行为。谨防受骗。
