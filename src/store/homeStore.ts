@@ -1,5 +1,5 @@
 import { gptsType, mlog } from '@/api';
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { ss } from '@/utils/storage'
 
 export const homeStore = reactive({
@@ -47,11 +47,13 @@ const getGptInt= ():gptConfigType =>{
         let old = JSON.parse(str);
         if(old) v={...v,...old};
     }
+
     return v;
 }
 
 const  getDefault=()=>{
 const amodel = homeStore.myData.session.amodel??'gpt-3.5-turbo'
+
 let v:gptConfigType={
         model: amodel,
         max_tokens:1024,

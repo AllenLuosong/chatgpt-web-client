@@ -11,6 +11,10 @@ export interface AppState {
   siderCollapsed: boolean
   theme: Theme
   language: Language
+  chatModel: ChatModel
+  drawvalue: DrawValue
+  isneedintro: boolean
+  
 }
 
 export function defaultSetting(): AppState {

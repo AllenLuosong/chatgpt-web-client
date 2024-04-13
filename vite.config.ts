@@ -53,17 +53,17 @@ export default defineConfig((env) => {
         '/mjapi': {
           target: viteEnv.VITE_APP_API_BASE_URL,
           changeOrigin: true, // 允许跨域
-          //rewrite: path => path.replace('/api/', '/'),
+          rewrite: path => path.replace('/api/', '/'),
         },
          '/uploads': {
           target: viteEnv.VITE_APP_API_BASE_URL,
           changeOrigin: true, // 允许跨域
-          //rewrite: path => path.replace('/api/', '/'),
+          rewrite: path => path.replace('/api/', '/'),
         }, 
         '/openapi': {
           target: viteEnv.VITE_APP_API_BASE_URL,
           changeOrigin: true, // 允许跨域
-          //rewrite: path => path.replace('/api/', '/'),
+          rewrite: path => path.replace('/api/', '/'),
         },
         
       },

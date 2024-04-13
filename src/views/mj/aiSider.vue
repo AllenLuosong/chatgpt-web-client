@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { computed,defineAsyncComponent ,ref} from "vue";
+import { computed,defineAsyncComponent, onMounted, ref } from "vue";
 import { SvgIcon ,HoverButton, CalendarSignIn } from '@/components/common'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
-const { isMobile } = useBasicLayout()
 import { NAvatar,NTooltip } from 'naive-ui'
 import { homeStore, useUserStore,useChatStore } from '@/store'
-const chatStore = useChatStore()
 import defaultAvatar from '@/assets/avatar.jpg'
+import 'intro.js/introjs.css' // 引入 Intro.js 的 CSS 文件
+import IntroJs from 'intro.js'
+import { useAuthStore } from '@/store'
+import { useAppStore } from '@/store'
 
+const authStore = useAuthStore()
+const appStore = useAppStore()
+
+const needPermission = computed(() => !authStore.token)
+const isneedintro = computed(() => appStore.isneedintro)
 //import gallery from '@/views/gallery/index.vue'
+const chatStore = useChatStore()
+const { isMobile } = useBasicLayout()
 
 const Setting = defineAsyncComponent(() => import('@/components/common/Setting/index.vue'))
 const userStore = useUserStore()
@@ -36,6 +45,33 @@ const goHome =computed(  () => {
 // }
 //mlog('g', goHome() );
 const chatId= computed(()=>chatStore.active??'1002' );
+
+// onMounted(() => {
+//   const intro = IntroJs()
+//   intro.setOptions({
+//       prevLabel: '上一步',
+//       nextLabel: '下一步',
+//       skipLabel: '跳过',
+//       doneLabel: '完成',
+//       tooltipClass: 'intro-tooltip', 
+//       steps: [
+//         { 
+//           element: document.querySelector('#app > div > div.dark\:bg-\[\#24272e\].transition-all.p-0.h-full > div > div > div > div.flex-shrink-0.w-\[60px\].z-\[1000\].h-full > div > div.flex.flex-col.space-y-2 > div:nth-child(2)'),
+//           intro: '点击选择对话模型'
+//         },
+//         { 
+//           element: document.querySelector('#app > div > div.dark\:bg-\[\#24272e\].transition-all.p-0.h-full > div > div > div > div.flex-shrink-0.w-\[60px\].z-\[1000\].h-full > div > div.flex.flex-col.space-y-2 > div:nth-child(3) > button'),
+//           intro: '点击签到领取福利'
+//         }
+//       ]
+//     })
+//   if (!needPermission.value){
+//     if (isneedintro.value){
+//         intro.start()
+//         appStore.setIsNeedIntro(false)
+//       }
+//   }
+// })
 </script>
 <template>
 <div class="flex-shrink-0 w-[60px] z-[1000]  h-full" v-if="!isMobile">

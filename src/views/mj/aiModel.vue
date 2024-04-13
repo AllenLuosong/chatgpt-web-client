@@ -6,7 +6,9 @@ import { mlog,chatSetting } from "@/api";
 import { t } from "@/locales";
 import { useUserStore } from '@/store'
 import { getUserInfo } from '@/api/login'
+import { useAuthStore } from '@/store'
 
+const authStore = useAuthStore()
 const chatModelList = ref([]);
 const ms= useMessage()
 
@@ -16,7 +18,10 @@ async function userInfo() {
     chatModelList.value = data.chatModelList
     return data;
 }
-userInfo()
+
+const needPermission = computed(() => !authStore.token)
+if (!needPermission.value)
+  userInfo()
 
 
 interface Emit {
@@ -30,6 +35,7 @@ const uuid = chatStore.active;
 const chatSet = new chatSetting( uuid==null?1002:uuid);
 
 const nGptStore = ref(  chatSet.getGptConfig() );
+console.log(nGptStore)
 
 const config = ref({
   model:userInfo.chatModel,
@@ -109,8 +115,8 @@ watch(()=>nGptStore.value.model,(n)=>{
 const reSet=()=>{
     gptConfigStore.setInit();
     nGptStore.value= gptConfigStore.myData;
+    console.log(nGptStore.value)
 }
-
 onMounted(() => {
     //gptConfigStore.myData= chatSet.getGptConfig();
 });

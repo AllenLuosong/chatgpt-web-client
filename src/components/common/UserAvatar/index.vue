@@ -5,7 +5,9 @@ import { useUserStore } from '@/store'
 import defaultAvatar from '@/assets/avatar.jpg'
 import { isString } from '@/utils/is'
 import { getUserInfo } from '@/api/login'
+import { useAuthStore } from '@/store'
 
+const authStore = useAuthStore()
 const userInfo = ref('')
 
 
@@ -14,7 +16,9 @@ async function userInfo1() {
     userInfo.value = data
     return data;
 }
-userInfo1()
+const needPermission = computed(() => !authStore.token)
+if (!needPermission.value)
+  userInfo1()
 
 
 </script>
