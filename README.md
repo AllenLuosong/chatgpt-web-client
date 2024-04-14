@@ -1,6 +1,6 @@
 # chat-web 
 💡**声明** 
-- 此项目是基于 [midjourney-proxy](https://github.com/novicezk/midjourney-proxy)  的二开项目
+- 此项目是基于 [ChatGPT Web Midjourney Proxy](https://github.com/Dooy/chatgpt-web-midjourney-proxy)  的二开项目
 
 # 修改记录 
 - 20240323
