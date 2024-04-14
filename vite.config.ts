@@ -63,7 +63,7 @@ export default defineConfig((env) => {
         '/openapi': {
           target: viteEnv.VITE_APP_API_BASE_URL,
           changeOrigin: true, // 允许跨域
-          // rewrite: path => path.replace('/openapi/', '/'),
+          rewrite: path => path.replace('/openapi/', '/'),
         },
         
       },
