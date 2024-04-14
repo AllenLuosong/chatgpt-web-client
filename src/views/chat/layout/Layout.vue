@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { NLayout, NLayoutContent,useMessage, NModal, NTabPane, NTabs } from 'naive-ui'
 import { useRouter ,useRoute } from 'vue-router'
 import Sider from './sider/index.vue'
-import Permission from './Permission.vue'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { gptConfigStore, homeStore, useAppStore, useAuthStore, useChatStore } from '@/store'
 import { aiSider,aiFooter} from '@/views/mj' 
@@ -79,7 +78,6 @@ const getContainerClass = computed(() => {
         </NLayoutContent>
       </NLayout>
     </div>
-    <!-- <Permission :visible="needPermission" /> -->
     <NModal :show="needPermission" style="width: 90%; max-width: 640px">
       <div class="p-10 bg-white rounded dark:bg-slate-800">
         <div class="space-y-4">

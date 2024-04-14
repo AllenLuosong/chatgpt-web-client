@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-import { computed, ref } from 'vue'
-import { NButton, NInput, NModal, useMessage } from 'naive-ui'
-import { fetchVerify } from '@/api'
-import { useAuthStore } from '@/store'
+import { NButton, NInput, NModal, useMessage, NTabPane, NTabs } from 'naive-ui'
 import Icon403 from '@/icons/403.vue'
+import login from './login.vue'
+import register from './register.vue'
+import register2 from './ResetPassword.vue'
 
 interface Props {
   visible: boolean
@@ -11,44 +11,7 @@ interface Props {
 
 defineProps<Props>()
 
-const authStore = useAuthStore()
 
-const ms = useMessage()
-
-const loading = ref(false)
-const token = ref('')
-
-const disabled = computed(() => !token.value.trim() || loading.value)
-
-async function handleVerify() {
-  const secretKey = token.value.trim()
-
-  if (!secretKey)
-    return
-
-  try {
-    loading.value = true
-    await fetchVerify(secretKey)
-    authStore.setToken(secretKey)
-    ms.success('success')
-    window.location.reload()
-  }
-  catch (error: any) {
-    ms.error(error.message ?? 'error')
-    authStore.removeToken()
-    token.value = ''
-  }
-  finally {
-    loading.value = false
-  }
-}
-
-function handlePress(event: KeyboardEvent) {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault()
-    handleVerify()
-  }
-}
 </script>
 
 <template>
@@ -64,16 +27,17 @@ function handlePress(event: KeyboardEvent) {
           </p>
           <Icon403 class="w-[200px] m-auto" />
         </header>
-        <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
-        <NButton
-          block
-          type="primary"
-          :disabled="disabled"
-          :loading="loading"
-          @click="handleVerify"
-        >
-          {{ $t('common.verify') }}
-        </NButton>
+          <NTabs default-value="login" size="large" animated>
+            <NTabPane name="login" tab="登录">
+              <login />
+            </NTabPane>
+            <NTabPane name="register" tab="注册">
+              <register />
+            </NTabPane>
+            <NTabPane name="resetPassword" tab="密码重置">
+              <register2 />
+            </NTabPane>
+          </NTabs>
       </div>
     </div>
   </NModal>
