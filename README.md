@@ -9,7 +9,7 @@
 新增登录功能
 
 # 🔭 本项目预览地址
-项目体验地址:  [网页Dmeo](https://wiki.hichat.shop/)
+项目体验地址:  [网页Dmeo](https://assistant.hichat.shop/)
 体验账号/密码:  demo1@demo.com/demo20240209
 
 # 以下是[midjourney-proxy]项目说明

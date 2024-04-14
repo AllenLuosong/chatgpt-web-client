@@ -117,11 +117,12 @@ export default {
   }
 
   ,mjtab:{
-    chat:'对话'
-    ,draw:'绘画'
-    ,drawinfo:'AI绘画 Midjourney引擎'
-    ,gallery:'画廊'
-    ,galleryInfo:'我的画廊'
+    chat:'对话',
+    draw:'绘画',
+    drawinfo:'AI绘画 Midjourney引擎',
+    gallery:'画廊',
+    galleryInfo:'我的画廊',
+    signIn: '签到'
   }
   ,mjchat:{
     loading:'正在载入图片'
@@ -188,7 +189,7 @@ export default {
     ,tQuality:'画质'
     ,tStyles:'艺术程度'
     ,tVersion:'模型版本'
-    ,dalleInfo:' 说明：   <li>1 dall-e 是openAi提供的画图模型</li>  <li>2 openAi的图片有时效性，请做好备份</li>   <li>3 注意：1790px的图片价格是双倍</li> '
+    ,dalleInfo:' 说明：   <li>1 dall-e 是openAi提供的画图模型</li>  <li>2 openAi的图片有时效性(2个小时)，请做好备份</li>   <li>3 注意：1792px的图片价格是1024px双倍</li> '
     ,version:'版本'
     ,size:'尺寸'
     ,blendInfo:'说明： <li>1 合成至少2张图片</li> <li>2 最多可传6张图</li> '
