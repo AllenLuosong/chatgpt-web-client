@@ -6,7 +6,7 @@
 -->
 <script setup lang='ts'>
 import { computed } from 'vue'
-import { NLayout, NLayoutContent, NModal, NTabPane, NTabs } from 'naive-ui'
+import { NLayout, NLayoutContent, NModal, NTabPane, NTabs, NText } from 'naive-ui'
 import { useRoute, useRouter } from 'vue-router'
 import Sider from './sider/index.vue'
 import login from './login.vue'
@@ -85,7 +85,12 @@ if (!needPermission.value)
             <p class="text-base text-center text-slate-500 dark:text-slate-500">
               {{ $t('common.unauthorizedTips') }}
             </p>
-            <Icon403 class="w-[200px] m-auto" />
+						<Icon403 class="w-[100px] m-auto" />
+            <h2 class="text-2xl font-bold text-center red">
+            <NText type="warning">
+            系统已升级完成,旧版本系统即将下线,请点击 <a href="https://assistant.hichat.shop"> https://assistant.hichat.shop </a>体验新系统
+            </NText>
+            </h2>
           </header>
           <NTabs default-value="login" size="large" animated>
             <NTabPane name="login" tab="登录">
