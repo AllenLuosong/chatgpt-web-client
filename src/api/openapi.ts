@@ -355,12 +355,13 @@ export const subTTS = async (tts:ttsType )=>{
         'Content-Type': 'application/json'
       }
      headers={...headers,...getHeaderAuthorization()}
+    console.log(JSON.stringify(tts))
     const response = await fetch(url, {
       method: 'POST',
       headers,
       body: JSON.stringify(tts),
     });
-
+    console.log(response)
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }

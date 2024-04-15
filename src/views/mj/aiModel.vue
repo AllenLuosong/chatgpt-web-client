@@ -35,8 +35,6 @@ const uuid = chatStore.active;
 const chatSet = new chatSetting( uuid==null?1002:uuid);
 
 const nGptStore = ref(  chatSet.getGptConfig() );
-console.log(nGptStore)
-
 const config = ref({
   model:userInfo.chatModel,
   maxToken:2048

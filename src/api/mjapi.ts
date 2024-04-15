@@ -1,9 +1,8 @@
 
  //import { useChat } from '@/views/chat/hooks/useChat'
 
-import { gptConfigStore, gptServerStore, homeStore, useAuthStore } from "@/store";
+import { gptServerStore, homeStore, useAuthStore } from "@/store";
 import { copyToClip } from "@/utils/copy";
-import { isNumber } from "@/utils/is";
 import { localGet, localSaveAny } from "./mjsave";
 import { t } from "@/locales";
 //import { useMessage } from "naive-ui";

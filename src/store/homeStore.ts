@@ -42,12 +42,6 @@ export interface gptConfigType{
 }
 const getGptInt= ():gptConfigType =>{
     let v:gptConfigType=getDefault();
-    let str = localStorage.getItem('gptConfigStore');
-    if(str){
-        let old = JSON.parse(str);
-        if(old) v={...v,...old};
-    }
-
     return v;
 }
 
