@@ -1,5 +1,5 @@
-import { gptsType, mlog } from '@/api';
-import { reactive, ref } from 'vue'
+import { gptsType } from '@/api';
+import { reactive } from 'vue'
 import { ss } from '@/utils/storage'
 
 export const homeStore = reactive({

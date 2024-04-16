@@ -196,12 +196,8 @@ export const whisperUpload = ( FormData:FormData )=>{
 }
 
 export const subGPT= async (data:any, chat:Chat.Chat )=>{
-   let d:any;
    let action= data.action;
-   //chat.myid=  `${Date.now()}`;
    if(  action=='gpt.dall-e-3' ){ //执行变化
-       // chat.model= 'dall-e-3';
-
        let d= await gptFetch('/v1/images/generations', data.data);
        try{
             const rz : any= d.data[0];
@@ -361,7 +357,6 @@ export const subTTS = async (tts:ttsType )=>{
       headers,
       body: JSON.stringify(tts),
     });
-    console.log(response)
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }

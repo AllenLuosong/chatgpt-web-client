@@ -140,7 +140,6 @@ async function onConversation() {
   addChat(  +uuid, outMsg  )
   outMsg.index=  dataSources.value.length - 1;
   scrollToBottom()
-
   try { 
      if( message.action && message.action.indexOf('gpt.')==0 ){ 
         await subGPT(message, outMsg );

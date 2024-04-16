@@ -21,14 +21,8 @@ const isDisabled = computed(() => {
 });
 
 const create = async () => {
-  // const d= await gptFetch('/v1/embeddings',{
-  // "input":  f.value.prompt,
-  // "model": "text-embedding-ada-002"
-  // });
-  // mlog('test',d );
-  //return ;
   let obj = {
-    action: "gpt.dall-e-2",
+    action:'gpt.dall-e-3',
     data: f.value,
   };
   homeStore.setMyData({ act: "draw", actData: obj });
@@ -36,6 +30,7 @@ const create = async () => {
 };
 watch(
   () => homeStore.myData.act,
+
   (n) => {
     if (n == "dallReload") {
       st.value.isGo = false;
