@@ -88,7 +88,7 @@ if (!needPermission.value)
 						<Icon403 class="w-[100px] m-auto" />
             <h2 class="text-2xl font-bold text-center red">
             <NText type="warning">
-            系统已升级完成,旧版本系统即将下线,请点击 <a href="https://assistant.hichat.shop"> https://assistant.hichat.shop </a>体验新系统
+            系统已升级完成,旧版本系统即将下线,请点击 <a href="https://assistant.old-eight.top"> https://assistant.old-eight.top </a>体验新系统
             </NText>
             </h2>
           </header>
