@@ -88,8 +88,8 @@ if (!needPermission.value)
 						<Icon403 class="w-[100px] m-auto" />
             <h3 class="text-2xl font-bold text-center red">
             <NText type="warning">
-            旧版本系统即将下线,请点击 <a href="https://assistant.old-eight.top"> https://assistant.old-eight.top</a> 体验新系统
-						(旧系统账号已同步至新系统,可直接登录使用)
+            系统即将下线,请点击 <a href="https://assistant.old-eight.top"> https://assistant.old-eight.top</a> 体验新系统
+						(账号已同步至新系统,可直接登录使用)
             </NText>
             </h3>
           </header>
