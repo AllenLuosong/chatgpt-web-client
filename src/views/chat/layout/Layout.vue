@@ -86,11 +86,12 @@ if (!needPermission.value)
               {{ $t('common.unauthorizedTips') }}
             </p>
 						<Icon403 class="w-[100px] m-auto" />
-            <h2 class="text-2xl font-bold text-center red">
+            <h3 class="text-2xl font-bold text-center red">
             <NText type="warning">
-            系统已升级完成,旧版本系统即将下线,请点击 <a href="https://assistant.old-eight.top"> https://assistant.old-eight.top </a>体验新系统
+            旧版本系统即将下线,请点击 <a href="https://assistant.old-eight.top"> https://assistant.old-eight.top</a> 体验新系统
+						(旧系统账号已同步至新系统,可直接登录使用)
             </NText>
-            </h2>
+            </h3>
           </header>
           <NTabs default-value="login" size="large" animated>
             <NTabPane name="login" tab="登录">
