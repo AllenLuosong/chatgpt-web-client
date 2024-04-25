@@ -87,14 +87,11 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
-  //调试
-  // {
-  //   path: '/mytest',
-  //   name: 'mytest',
-  //   component: () => import('@/views/mj/myTest.vue'),
-  // },
-
+  {
+    path: '/emailValidation',
+    name: 'emailValidation',
+    component: () => import('@/views/exception/emailValidation/index.vue'),
+  },
   {
     path: '/404',
     name: '404',
