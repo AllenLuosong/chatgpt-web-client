@@ -31,6 +31,7 @@ interface Emit {
 const emit = defineEmits(['close']);
 const chatStore = useChatStore();
 const uuid = chatStore.active;
+console.log(chatStore.active)
 //mlog('uuid', uuid );
 const chatSet = new chatSetting( uuid==null?1002:uuid);
 

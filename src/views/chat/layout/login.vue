@@ -16,7 +16,6 @@ const authStore = useAuthStore()
 
 const ms = useMessage()
 const loading = ref(false)
-// const token = ref('')
 
 // 表单相关
 const formRef = ref<FormInst | null>(null)
@@ -58,9 +57,13 @@ async function handleVerify() {
   formRef.value?.validate((errors: any) => {
     if (!errors)
       pushClick()
-
     else ms.error('请正确填写输入框中的内容')
   })
+}
+
+function handleDemoAccount() {
+  userInfo.value.email = 'demo1@demo.com'
+  userInfo.value.passWord = 'demo20240209'
 }
 
 async function pushClick() {
@@ -122,6 +125,15 @@ function handlePress(event: KeyboardEvent) {
     :loading="loading"
     @click="handleVerify"
   >
-    {{ $t('common.verify') }}
+    {{ $t('common.login') }}
+  </NButton>
+    <NButton
+    tertiary 
+    round
+    type="warning"
+    :loading="loading"
+    @click="handleDemoAccount"
+  >
+    点击使用演示账号登录
   </NButton>
 </template>

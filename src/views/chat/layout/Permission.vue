@@ -25,7 +25,7 @@ defineProps<Props>()
           <p class="text-base text-center text-slate-500 dark:text-slate-500">
             {{ $t('common.unauthorizedTips') }}
           </p>
-          <Icon403 class="w-[200px] m-auto" />
+          <Icon403 class="w-[150px] m-auto" />
         </header>
           <NTabs default-value="login" size="large" animated>
             <NTabPane name="login" tab="登录">

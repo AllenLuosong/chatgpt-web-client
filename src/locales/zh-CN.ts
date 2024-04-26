@@ -25,6 +25,7 @@ export default {
     success: '操作成功',
     failed: '操作失败',
     verify: '验证',
+    login: '登录',
     unauthorizedTips: '未经授权，请先进行验证。',
     stopResponding: '停止响应',
     email: '邮箱',
@@ -36,7 +37,7 @@ export default {
     addEmailTips1: '请输入邮箱',
     addEmailTips2: '请输出正确邮箱格式',
     addPassWordTips: '请输入密码',
-    addTips: '请正确填写输入框中的内容',
+    addTips: '请正确填写输入框中的内容'
   },
   chat: {
     newChatButton: '新建聊天',

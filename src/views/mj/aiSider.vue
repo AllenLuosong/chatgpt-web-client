@@ -150,14 +150,16 @@ const chatId= computed(()=>chatStore.active??'1002' );
             <NAvatar  size="large"  round  :src="userInfo.avatar"   v-if="userInfo.avatar"  :fallback-src="defaultAvatar"
              class=" cursor-pointer"  />
             <HoverButton>
-                <div class="text-xl text-[#4f555e] dark:text-white flex h-full justify-center items-center "  @click="showCalendar = true">
-                    <SvgIcon icon="ri:calendar-2-line" />
+                <div class="flex h-full justify-center items-center   py-1 flex-col"  @click="showCalendar = true">
+                    <SvgIcon icon="ri:calendar-2-line" class="text-3xl flex-1"/>
+                    <span class="text-[10px]">签到</span>
                 </div>
             </HoverButton>
 
             <HoverButton>
-                <div class="text-xl text-[#4f555e] dark:text-white flex h-full justify-center items-center "  @click="st.show = true">
-                    <SvgIcon icon="ri:settings-4-line" />
+                <div class="flex h-full justify-center items-center   py-1 flex-col"  @click="st.show = true">
+                    <SvgIcon icon="ri:settings-4-line"  class="text-3xl flex-1"/>
+                    <span class="text-[10px]">设置</span>
                 </div>
             </HoverButton>
         </div>
