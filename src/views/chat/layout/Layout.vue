@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { computed } from 'vue'
-import { NLayout, NLayoutContent,useMessage, NModal, NTabPane, NTabs } from 'naive-ui'
+import { computed, ref } from 'vue'
+import { NLayout, NLayoutContent,useMessage, NModal, NTabPane, NTabs, NImage } from 'naive-ui'
 import { useRouter ,useRoute } from 'vue-router'
 import Sider from './sider/index.vue'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
@@ -44,10 +44,11 @@ const { isMobile } = useBasicLayout()
 const collapsed = computed(() => appStore.siderCollapsed)
 
 const needPermission = computed(() => {
-//mlog( 'Layout token',  authStore.token   )
-   
+ 
  return  !!authStore.session?.auth && !authStore.token
 })
+
+const showModal = ref(JSON.parse(homeStore.myData.session.isShowDemo)) 
 
 const getMobileClass = computed(() => {
   if (isMobile.value)
@@ -76,6 +77,22 @@ const getContainerClass = computed(() => {
         </NLayoutContent>
       </NLayout>
     </div>
+    <NModal
+      style="width: 90%; max-width: 640px"
+      v-model:show="showModal"
+      preset="dialog"
+      title="警告"
+      type="warning"
+      positive-text="确认"
+      >
+      你正在使用演示账号登录,如想使用完整功能请扫描如下二维码联系管理员,或点击签到功能领取额度福利🤙
+      <br />
+      <NImage
+        width="200"
+        src="https://img2.imgtp.com/2024/03/31/RaP7CxZO.jpg"
+      />
+    </NModal>
+
     <NModal :show="needPermission" style="width: 90%; max-width: 640px">
       <div class="p-10 bg-white rounded dark:bg-slate-800">
         <div class="space-y-4">

@@ -10,7 +10,7 @@ import type { FormInst, FormRules } from 'naive-ui'
 import { NButton, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
 import { loginEmail } from '@/api/login'
 import type { loginModel } from '@/api/login'
-import { useAuthStore } from '@/store'
+import { useAuthStore, homeStore } from '@/store'
 
 const authStore = useAuthStore()
 
@@ -62,8 +62,8 @@ async function handleVerify() {
 }
 
 function handleDemoAccount() {
-  userInfo.value.email = 'demo1@demo.com'
-  userInfo.value.passWord = 'demo20240209'
+  userInfo.value.email = homeStore.myData.session.demoAccount
+  userInfo.value.passWord = homeStore.myData.session.demoPasswd
 }
 
 async function pushClick() {
