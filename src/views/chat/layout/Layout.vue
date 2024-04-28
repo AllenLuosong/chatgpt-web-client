@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { computed, ref } from 'vue'
-import { NLayout, NLayoutContent,useMessage, NModal, NTabPane, NTabs, NImage } from 'naive-ui'
+import { NLayout, NLayoutContent,useMessage, NModal, NTabPane, NTabs, NImage, NText } from 'naive-ui'
 import { useRouter ,useRoute } from 'vue-router'
 import Sider from './sider/index.vue'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
@@ -103,7 +103,7 @@ const getContainerClass = computed(() => {
             <p class="text-base text-center text-slate-500 dark:text-slate-500">
               {{ $t('common.unauthorizedTips') }}
             </p>
-            <Icon403 class="w-[200px] m-auto" />
+            <Icon403 class="w-[150px] m-auto" />
           </header>
           <NTabs default-value="login" size="large" animated>
             <NTabPane name="login" tab="登录">
@@ -116,6 +116,10 @@ const getContainerClass = computed(() => {
               <register2 />
             </NTabPane>
           </NTabs>
+          <p  class="text-base dark:text-slate-500">
+          使用本平台，视您接受并同意 <a class="text-blue-500" target="_blank" href="disclaimer.html">《免责声明》</a>,
+          <a class="text-blue-500" target="_blank" href="https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm">《生成式人工智能服务管理暂行办法》</a>内的相关条款。
+          </p>
         </div>
       </div>
     </NModal>
