@@ -159,7 +159,7 @@ async function pushClick() {
 
     // 成功弹框
     dialog.success({
-      title: '注册成功!!!',
+      title: '邮件发送成功!!!',
       content: `请到${userInfo.value.email}查看邮件确认`,
       maskClosable: false,
       closable: false,

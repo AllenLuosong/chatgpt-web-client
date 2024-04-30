@@ -2,7 +2,7 @@
 import { computed,defineAsyncComponent, onMounted, ref } from "vue";
 import { SvgIcon ,HoverButton, CalendarSignIn } from '@/components/common'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
-import { NAvatar,NTooltip } from 'naive-ui'
+import { NAvatar, NTooltip, NImage, NModal } from 'naive-ui'
 import { homeStore, useUserStore,useChatStore } from '@/store'
 import defaultAvatar from '@/assets/avatar.jpg'
 import 'intro.js/introjs.css' // 引入 Intro.js 的 CSS 文件
@@ -24,7 +24,7 @@ const userStore = useUserStore()
 
 const st= ref({'show':false,showImg:false, menu:[],active:'chat'})
 const showCalendar = ref<boolean>(false)
-
+const showContact = ref<boolean>(false)
 
 const userInfo = computed(() => userStore.userInfo)
 import { router } from '@/router'
@@ -147,8 +147,15 @@ const chatId= computed(()=>chatStore.active??'1002' );
         <div class="flex flex-col  space-y-2 "> 
 
             
-            <NAvatar  size="large"  round  :src="userInfo.avatar"   v-if="userInfo.avatar"  :fallback-src="defaultAvatar"
-             class=" cursor-pointer"  />
+            <!-- <NAvatar  size="large"  round  :src="userInfo.avatar"   v-if="userInfo.avatar"  :fallback-src="defaultAvatar"
+             class=" cursor-pointer"  /> -->
+            <HoverButton>
+                <div class="flex h-full justify-center items-center   py-1 flex-col"  @click="showContact = true">
+                <SvgIcon icon="ri:contacts-fill" class="text-3xl flex-1"/>
+                    <span class="text-[10px]">联系我</span>
+                </div>
+            </HoverButton>
+
             <HoverButton>
                 <div class="flex h-full justify-center items-center   py-1 flex-col"  @click="showCalendar = true">
                     <SvgIcon icon="ri:calendar-2-line" class="text-3xl flex-1"/>
@@ -165,9 +172,24 @@ const chatId= computed(()=>chatStore.active??'1002' );
         </div>
     </div>
 </div>
- <CalendarSignIn v-if="showCalendar" v-model:visible="showCalendar" />
- <Setting v-if="st.show" v-model:visible="st.show" />
 
+<CalendarSignIn v-if="showCalendar" v-model:visible="showCalendar" />
+<Setting v-if="st.show" v-model:visible="st.show" />
+<NModal
+  style="width: 90%; max-width: 640px"
+  v-model:show="showContact"
+  preset="dialog"
+  title="联系我"
+  type="info"
+  positive-text="确认"
+  >
+  如想使用完整功能请扫描如下二维码联系管理员,或点击签到功能领取额度福利🤙
+  <br />
+  <NImage
+    width="200"
+    src="https://img2.imgtp.com/2024/03/31/RaP7CxZO.jpg"
+  />
+</NModal>
 </template>
 
  
