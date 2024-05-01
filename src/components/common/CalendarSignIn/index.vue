@@ -128,3 +128,10 @@ function isDateDisabled(timestamp: number) {
     </NConfigProvider>
   </NModal>
 </template>
+
+<style scoped>
+::v-deep .n-calendar .n-calendar-header .n-calendar-header__extra {
+  display: none;
+}
+</style>
+

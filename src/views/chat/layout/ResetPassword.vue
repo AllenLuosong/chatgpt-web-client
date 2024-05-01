@@ -67,8 +67,6 @@ async function sendEmailVerficationCode() {
 
 async function handleReset() {
   // 格式校验
-  console.log(formRef.value)
-  console.log("userinfo", userInfo.value)
   formRef.value?.validate((errors: any) => {
     if (!errors) pushClick();
     else ms.error("请正确填写输入框中的内容");
