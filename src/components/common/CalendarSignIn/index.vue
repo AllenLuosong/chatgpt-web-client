@@ -72,11 +72,17 @@ async function handleUpdateValue(
   { year, month, date }: { year: number; month: number; date: number }
 ) {
   try {
-    await api.signin<User.Signin>({
-      date: `${year}-${month}-${date}`,
-    });
-    message.success(`签到成功,福利已到账`);
-    window.location.reload();
+    if(dateArray.value.includes(`${year}-${month}-${date}`)){
+      message.warning(`已经签到成功了~~`);
+      return
+    }
+    else{
+      await api.signin<User.Signin>({
+        date: `${year}-${month}-${date}`,
+      });
+      message.success(`签到成功,福利已到账`);
+      window.location.reload();
+    }
   } catch (error: any) {
     message.error(error.message ?? "error");
   }
@@ -121,8 +127,8 @@ function isDateDisabled(timestamp: number) {
             <span>{{ year }}年{{ month }}月</span>
           </div>
         </template>
-        <template #default="{ date }">
-          <span v-if="dateArray.includes(date)">🎁</span>
+        <template #default="{ year, month, date }">
+          <span v-if="dateArray.includes(`${year}-${month}-${date}`)">🎁已签到</span>
         </template>
       </NCalendar>
     </NConfigProvider>
