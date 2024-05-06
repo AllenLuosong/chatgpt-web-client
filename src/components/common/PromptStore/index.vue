@@ -8,6 +8,7 @@ import { usePromptStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { t } from '@/locales'
 
+
 interface DataProps {
   renderKey: string
   renderValue: string

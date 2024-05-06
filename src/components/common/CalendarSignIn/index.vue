@@ -21,6 +21,7 @@ import {
 import { isToday, addDays } from "date-fns";
 import api from "@/api";
 import { useAuthStore } from "@/store";
+import { useBasicLayout } from '@/hooks/useBasicLayout'
 
 const authStore = useAuthStore();
 const locale = ref(zhCN);
@@ -28,6 +29,9 @@ const dateLocale = ref(dateZhCN);
 const loading = ref(false);
 const SigninData = ref<User.Signin>({});
 const dateArray = ref([]);
+
+// 移动端自适应相关
+const { isMobile } = useBasicLayout()
 
 interface Props {
   visible: boolean;
@@ -128,7 +132,7 @@ function isDateDisabled(timestamp: number) {
           </div>
         </template>
         <template #default="{ year, month, date }">
-          <span v-if="dateArray.includes(`${year}-${month}-${date}`)">🎁已签到</span>
+          <span v-if="dateArray.includes(`${year}-${month}-${date}`)">🎁<span v-if="!isMobile">已签到</span></span>
         </template>
       </NCalendar>
     </NConfigProvider>
