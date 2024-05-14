@@ -66,7 +66,7 @@ watch(()=>homeStore.myData.act, async (n)=>{
         
         let promptMsg = getInitChat(dd.prompt );
         if( dd.fileBase64 && dd.fileBase64.length>0 ){ 
-            if( !canVisionModel(model)  ) model='gpt-4-vision-preview';
+            if( !canVisionModel(model)  ) model='gpt-4o';
         
             try{
                     let images= await localSaveAny( JSON.stringify( dd.fileBase64)  ) ;
@@ -154,7 +154,7 @@ watch(()=>homeStore.myData.act, async (n)=>{
         let message= [ {  "role": "system", "content": getSystemMessage(  +uuid2) },
                 ...historyMesg ];
         if( dd.fileBase64 && dd.fileBase64.length>0 ){
-            if(  model=='gpt-4-vision-preview' ){
+            if(  model=='gpt-4o' ){
                 let obj={
                         "role": "user",
                         "content": [] as any
