@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
-import { NButton, NLayoutSider, useDialog } from 'naive-ui'
+import { NButton, NLayoutSider, useDialog, NAlert } from 'naive-ui'
 import List from './List.vue'
 import Footer from './Footer.vue'
 import { useAppStore, useChatStore } from '@/store'
@@ -106,6 +106,11 @@ watch(
           <NButton @click="handleClearAll">
             <SvgIcon icon="ri:close-circle-line" />
           </NButton>
+        </div>
+        <div class="flex items-center p-4 space-x-4">
+          <NAlert type="info" :show-icon="false">
+            网站目前免费体验4.0及claude模型,可在模型选择处下拉选择
+          </NAlert> 
         </div>
       </main>
       <Footer />
