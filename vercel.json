@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://34.234.78.75/$1"
+      "destination": "http://34.228.65.182/$1"
     },
     {
       "source": "/openapi/(.*)",
-      "destination": "http://34.234.78.75/$1"
+      "destination": "http://34.228.65.182/$1"
     },
     { "source": "/:path*", "destination": "/index.html" }
   ]

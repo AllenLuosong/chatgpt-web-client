@@ -20,7 +20,7 @@ import {
 } from "naive-ui";
 import { isToday, addDays } from "date-fns";
 import api from "@/api";
-import { useAuthStore } from "@/store";
+import { useAuthStore, homeStore } from "@/store";
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 
 const authStore = useAuthStore();
@@ -56,6 +56,7 @@ const show = computed({
 
 const message = useMessage();
 const value = ref(addDays(Date.now(), 0).valueOf());
+const contactMeUrl = homeStore.myData.session.contactMeUrl
 
 async function fetchusersignindata() {
   try {
@@ -116,7 +117,7 @@ function isDateDisabled(timestamp: number) {
     🤙体验额度不够用，扫描二维码联系管理员(点击可放大) 👉 
       <NImage
     width="15"
-    src="https://img2.imgtp.com/2024/03/31/RaP7CxZO.jpg"
+    :src= contactMeUrl
   />
     </NAlert>
     <NConfigProvider :locale="locale" :date-locale="dateLocale">

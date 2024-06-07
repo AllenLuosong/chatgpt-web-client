@@ -42,6 +42,7 @@ const { isMobile } = useBasicLayout()
 
 
 const collapsed = computed(() => appStore.siderCollapsed)
+const contactMeUrl = homeStore.myData.session.contactMeUrl
 
 const needPermission = computed(() => {
  
@@ -89,7 +90,7 @@ const getContainerClass = computed(() => {
       <br />
       <NImage
         width="200"
-        src="https://img2.imgtp.com/2024/03/31/RaP7CxZO.jpg"
+        :src= contactMeUrl
       />
     </NModal>
 
